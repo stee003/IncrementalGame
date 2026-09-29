@@ -181,10 +181,12 @@ export class UIManager {
         this.gameState.on('surge:start', (surge) => {
             this.notifications.notifySurge(surge.name, surge.multiplier);
             if (this.foundryCanvas) this.foundryCanvas.surgeActive = true;
+            if (this.foundryModel && this.foundryModel.setSurge) this.foundryModel.setSurge(true);
         });
 
         this.gameState.on('surge:end', () => {
             if (this.foundryCanvas) this.foundryCanvas.surgeActive = false;
+            if (this.foundryModel && this.foundryModel.setSurge) this.foundryModel.setSurge(false);
         });
 
         this.gameState.on('ascension', () => {

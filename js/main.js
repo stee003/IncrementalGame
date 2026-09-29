@@ -51,7 +51,7 @@ class AstralFoundryGame {
         this.foundryCanvas = new FoundryCanvas(canvasEl);
 
         const modelContainer = document.getElementById('foundry-model-container');
-        this.foundryModel = new FoundryModel(modelContainer, gameState);
+        this.foundryModel = new FoundryModel(modelContainer, gameState, this.foundryCanvas);
 
         const floatContainer = document.getElementById('floating-text-container');
         this.floatingText = new FloatingTextManager(floatContainer);
@@ -130,6 +130,9 @@ class AstralFoundryGame {
 
         // Render dynamic canvas particles & stars
         this.foundryCanvas.render(deltaSeconds);
+
+        // Ease the visual state of the foundry structure (parallax, intensity)
+        this.foundryModel.tick(deltaSeconds);
 
         // Update UI
         this.uiManager.updateTick();
