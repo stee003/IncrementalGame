@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astral Foundry — Idle Cosmic Crucible</title>
+    <meta name="description" content="An original atmospheric idle game where you command an ancient floating astral foundry harnessing celestial aether.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/foundry.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+</head>
+<body>
+    <div id="app-root">
+        <!-- TOP HEADER -->
+        <header class="game-header">
+            <div class="brand-section">
+                <h1 class="game-title">ASTRAL FOUNDRY</h1>
+                <span class="game-subtitle">Cosmic Crucible</span>
+            </div>
+
+            <div class="header-center-surge">
+                <div class="active-surge-banner" id="active-surge-banner" style="display: none;">
+                    <!-- Injected dynamically when surge is active -->
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn-icon-header" id="btn-toggle-sound" title="Toggle Sound">🔊</button>
+                <button class="btn-icon-header" id="btn-manual-save" title="Save Progress (Ctrl+S)">💾</button>
+                <button class="btn-icon-header" id="btn-open-settings" title="Settings & Save Management">⚙️</button>
+            </div>
+        </header>
+
+        <!-- MAIN 3-COLUMN WORKSPACE -->
+        <main class="main-workspace">
+            <!-- LEFT COLUMN: NAVIGATION & INTERACTIVE TABS -->
+            <section class="left-panel" aria-label="Foundry Operations">
+                <nav class="nav-tabs-header" role="tablist">
+                    <button class="nav-item active" data-tab="overview" role="tab">Overview</button>
+                    <button class="nav-item" data-tab="production" role="tab">Production</button>
+                    <button class="nav-item" data-tab="buildings" role="tab">Buildings</button>
+                    <button class="nav-item" data-tab="upgrades" role="tab">Upgrades</button>
+                    <button class="nav-item" data-tab="research" role="tab">Research</button>
+                    <button class="nav-item" data-tab="automation" role="tab">Automation</button>
+                    <button class="nav-item" data-tab="archive" role="tab">Archive</button>
+                    <button class="nav-item ascension-tab" data-tab="ascension" role="tab">Ascension</button>
+                </nav>
+
+                <div class="tab-content-container">
+                    <!-- Tab: Overview -->
+                    <div class="tab-panel active" id="tab-overview">
+                        <div class="overview-welcome-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; margin-bottom: 14px;">
+                            <h3 style="font-size: 0.95rem; color: #f1f5f9; margin-bottom: 6px;">Foundry Status: Operational</h3>
+                            <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45;">
+                                Suspended within the celestial cloudbank, this ancient crucible channels the raw fabric of the void. Harvest <strong>Aether</strong> to awaken dormant structures, transcribe forgotten codices, and expand the floating foundry.
+                            </p>
+                        </div>
+
+                        <div class="quick-instructions" style="background: rgba(10, 14, 23, 0.5); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-bottom: 14px;">
+                            <h4 style="font-size: 0.8rem; color: var(--brass-gold); text-transform: uppercase; margin-bottom: 6px;">Foundry Directives</h4>
+                            <ul style="font-size: 0.76rem; color: var(--text-secondary); padding-left: 16px; line-height: 1.6;">
+                                <li><strong>Channel Core:</strong> Click the central crystal or press <kbd style="background: #1e293b; padding: 1px 4px; border-radius: 3px; border: 1px solid #475569;">Space</kbd> to draw raw Aether.</li>
+                                <li><strong>Construct:</strong> Build Condensers & Furnaces to establish automated passive output.</li>
+                                <li><strong>Evolve:</strong> Notice the physical Foundry expand and evolve visually with each tier.</li>
+                                <li><strong>Automate & Research:</strong> Build drones, activate construct matrices, and transcribe ancient theorems.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Production -->
+                    <div class="tab-panel" id="tab-production">
+                        <div id="production-overview-container"></div>
+                    </div>
+
+                    <!-- Tab: Buildings -->
+                    <div class="tab-panel" id="tab-buildings">
+                        <div class="buildings-list" id="buildings-list-container"></div>
+                    </div>
+
+                    <!-- Tab: Upgrades -->
+                    <div class="tab-panel" id="tab-upgrades">
+                        <div id="upgrades-container"></div>
+                    </div>
+
+                    <!-- Tab: Research -->
+                    <div class="tab-panel" id="tab-research">
+                        <div id="research-tree-container"></div>
+                    </div>
+
+                    <!-- Tab: Automation -->
+                    <div class="tab-panel" id="tab-automation">
+                        <div id="automation-container"></div>
+                    </div>
+
+                    <!-- Tab: Archive -->
+                    <div class="tab-panel" id="tab-archive">
+                        <h3 class="section-title">Foundry Milestones</h3>
+                        <div class="milestones-list" id="milestones-list-container"></div>
+
+                        <h3 class="section-title" style="margin-top: 20px;">Codex of the Astral Architects</h3>
+                        <div id="lore-codex-container"></div>
+
+                        <h3 class="section-title" style="margin-top: 20px;">Chronicle of Statistics</h3>
+                        <div id="stats-table-container"></div>
+                    </div>
+
+                    <!-- Tab: Ascension -->
+                    <div class="tab-panel" id="tab-ascension">
+                        <div id="ascension-view-container"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CENTER COLUMN: ASTRAL FOUNDRY VIEWPORT -->
+            <section class="center-viewport" aria-label="Astral Foundry Central Viewport">
+                <!-- Atmospheric Canvas: Stars, Nebulae, and Dynamic Particles -->
+                <canvas id="foundry-canvas"></canvas>
+
+                <!-- Layered Evolving Visual Model of the Foundry -->
+                <div id="foundry-model-container"></div>
+            </section>
+
+            <!-- RIGHT COLUMN: RESOURCE & PROGRESSION PANEL -->
+            <aside class="right-panel" aria-label="Foundry Energy Reserves">
+                <!-- Primary Resource Card: Aether -->
+                <div class="resource-card">
+                    <div class="res-header">
+                        <span>Aether Reserve</span>
+                        <span class="icon" title="Primary Celestial Fuel">✦</span>
+                    </div>
+                    <div class="res-main-display">
+                        <span class="res-value" id="res-aether-amount">0</span>
+                        <span class="res-unit">AE</span>
+                    </div>
+                    <div class="res-rate-row">
+                        <span class="rate-label">Harvest Rate:</span>
+                        <span class="rate-val" id="res-cps-rate">+0 /s</span>
+                    </div>
+                </div>
+
+                <!-- Rate Multipliers & Channel Power -->
+                <div class="stat-pills-row">
+                    <div class="stat-pill">
+                        <span class="pill-label">Global Flux</span>
+                        <span class="pill-val" id="res-global-multiplier">1.0x</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="pill-label">Manual Pulse</span>
+                        <span class="pill-val" id="res-click-power">+1</span>
+                    </div>
+                </div>
+
+                <!-- Astral Shards (Prestige Currency) -->
+                <div class="shards-card" id="res-shards-section" style="display: none;">
+                    <div class="res-header" style="color: #c084fc;">
+                        <span>Astral Shards</span>
+                        <span>🌌</span>
+                    </div>
+                    <div class="shards-val" id="res-shards-amount">0</div>
+                    <div style="font-size: 0.72rem; color: #d8b4fe; margin-top: 4px;">
+                        Permanent Celestial Catalysts
+                    </div>
+                </div>
+
+                <!-- Milestone Progress Card -->
+                <div class="milestone-progress-card">
+                    <div class="milestone-progress-header">
+                        <span id="milestone-progress-text">Next Milestone</span>
+                        <span>🏆</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="milestone-progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Interactive Manual Channel Button -->
+                <button class="btn-primary" id="channel-action-btn" style="margin-top: auto; padding: 12px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <span>✦</span>
+                    <span>Channel Aether Core</span>
+                    <span>✦</span>
+                </button>
+            </aside>
+        </main>
+
+        <!-- BOTTOM CONTEXTUAL BAR -->
+        <footer class="bottom-bar">
+            <!-- Buy Amount Switcher -->
+            <div class="buy-amount-controls">
+                <button class="buy-amount-btn active" data-amount="1">1x</button>
+                <button class="buy-amount-btn" data-amount="10">10x</button>
+                <button class="buy-amount-btn" data-amount="25">25x</button>
+                <button class="buy-amount-btn" data-amount="max">Max</button>
+            </div>
+
+            <!-- Quick Building Purchase Bar -->
+            <div class="quick-buildings-bar" id="quick-buildings-bar">
+                <!-- Dynamically populated chips -->
+            </div>
+
+            <!-- Quick Recommended Upgrade -->
+            <div class="quick-upgrade-slot" id="quick-upgrade-slot">
+                <!-- Dynamically populated upgrade chip -->
+            </div>
+        </footer>
+
+        <!-- FLOATING TEXT LAYER -->
+        <div id="floating-text-container"></div>
+
+        <!-- NOTIFICATION TOASTS -->
+        <div id="notifications-container"></div>
+
+        <!-- MODALS -->
+        <div class="modal-wrapper" id="offline-modal"></div>
+        <div class="modal-wrapper" id="settings-modal"></div>
+        <div class="modal-wrapper" id="ascension-modal"></div>
+    </div>
+
+    <!-- Application Script (ES Module) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

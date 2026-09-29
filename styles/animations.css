@@ -1,0 +1,178 @@
+/**
+ * Astral Foundry - Keyframe Animations
+ * Handles smooth cosmic-industrial movement and feedback
+ */
+
+@keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateSlowReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes rotateOuterGimbal {
+    from { transform: rotate3d(1, 1, 0, 0deg); }
+    to { transform: rotate3d(1, 1, 0, 360deg); }
+}
+
+@keyframes rotateMidGimbal {
+    from { transform: rotate3d(0, 1, 1, 0deg); }
+    to { transform: rotate3d(0, 1, 1, 360deg); }
+}
+
+@keyframes rotateInnerGimbal {
+    from { transform: rotate3d(1, 0, 1, 0deg); }
+    to { transform: rotate3d(1, 0, 1, 360deg); }
+}
+
+@keyframes crystalFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+@keyframes crystalCorePulse {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4)); }
+    50% { filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.85)); }
+}
+
+@keyframes auraBreath {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.12); opacity: 0.95; }
+}
+
+@keyframes corePulseImpact {
+    0% { transform: scale(0.92); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1.0); }
+}
+
+@keyframes shockwaveExpand {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.9;
+        border-width: 3px;
+    }
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+@keyframes floatUpFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20%) scale(0.85);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, -60%) scale(1.1);
+    }
+    75% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -130%) scale(0.95);
+    }
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastSlideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes modalScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+}
+
+@keyframes surgePulse {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+    }
+}
+
+@keyframes orbitCrucibles {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes forgeCoreThrob {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 8px #f59e0b; }
+    50% { transform: scale(1.25); box-shadow: 0 0 16px #fbbf24; }
+}
+
+@keyframes lightningFlicker {
+    0% { opacity: 0.2; transform: scaleX(0.7); }
+    100% { opacity: 0.9; transform: scaleX(1.1); }
+}
+
+@keyframes chronalSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes timeDistort {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.08); opacity: 0.6; }
+}
+
+@keyframes rotateArmillary {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes furnaceVentPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+    50% { box-shadow: 0 0 18px rgba(239, 68, 68, 0.7); }
+}
+
+@keyframes floraSway {
+    0% { transform: rotate(-3deg) scaleY(0.95); }
+    100% { transform: rotate(3deg) scaleY(1.05); }
+}
+
+@keyframes floraGlow {
+    0% { filter: brightness(0.85) drop-shadow(0 0 4px #a855f7); }
+    100% { filter: brightness(1.2) drop-shadow(0 0 12px #c084fc); }
+}
+
+@keyframes vaporPuff {
+    0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+    100% { transform: translateY(-20px) scale(1.3); opacity: 0; }
+}
+
+@keyframes fadeInTab {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
