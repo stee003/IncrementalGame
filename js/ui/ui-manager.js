@@ -213,8 +213,18 @@ export class UIManager {
         const clientX = e ? e.clientX : window.innerWidth / 2;
         const clientY = e ? e.clientY : window.innerHeight / 2;
         this.floatingText.spawn(clientX, clientY, gained, 'aether');
+        this.bumpResourceValue();
 
         this.updateResourcePanel();
+    }
+
+    /** Restart the counter's pop animation after manual channels. */
+    bumpResourceValue() {
+        const el = this.dom.aetherDisplay;
+        if (!el) return;
+        el.classList.remove('bump');
+        void el.offsetWidth; // force reflow so the animation replays
+        el.classList.add('bump');
     }
 
     switchTab(tabId) {
@@ -262,8 +272,10 @@ export class UIManager {
     updateSoundButton() {
         const state = this.gameState.getState();
         if (this.dom.btnMute) {
-            this.dom.btnMute.innerHTML = state.settings.muted ? '🔇' : '🔊';
+            // The speaker glyph is inline SVG; the .muted class swaps waves for a slash.
+            this.dom.btnMute.classList.toggle('muted', !!state.settings.muted);
             this.dom.btnMute.title = state.settings.muted ? 'Unmute Sound' : 'Mute Sound';
+            this.dom.btnMute.setAttribute('aria-label', state.settings.muted ? 'Unmute sound' : 'Mute sound');
         }
     }
 
@@ -325,7 +337,7 @@ export class UIManager {
             if (state.activeSurge && state.activeSurge.remainingSeconds > 0) {
                 this.dom.activeSurgeBanner.style.display = 'flex';
                 this.dom.activeSurgeBanner.innerHTML = `
-                    <span class="surge-icon">⚡</span>
+                    <span class="surge-icon"><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.2 1.2 3.4 9h3.4l-.8 5.8L12.6 6.6H9l.2-5.4Z" fill="currentColor" stroke="rgba(255,255,255,.55)" stroke-width=".7" stroke-linejoin="round"/></svg></span>
                     <span class="surge-title">${state.activeSurge.name}:</span>
                     <span class="surge-mult">${state.activeSurge.multiplier}x Production</span>
                     <span class="surge-time">(${state.activeSurge.remainingSeconds.toFixed(1)}s)</span>

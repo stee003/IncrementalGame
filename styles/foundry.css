@@ -68,10 +68,10 @@
 }
 
 .mist-back {
-    width: 400px;
-    height: 90px;
-    bottom: 46px;
-    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.14) 0%, transparent 70%);
+    width: 420px;
+    height: 100px;
+    bottom: 44px;
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.2) 0%, transparent 70%);
     animation: mistDrift 26s ease-in-out infinite alternate;
 }
 
@@ -79,7 +79,7 @@
     width: 330px;
     height: 70px;
     bottom: 26px;
-    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.13) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.18) 0%, transparent 70%);
     animation: mistDrift 19s ease-in-out infinite alternate-reverse;
 }
 
@@ -87,7 +87,7 @@
     width: 250px;
     height: 54px;
     bottom: 12px;
-    background: radial-gradient(ellipse at center, rgba(125, 211, 252, 0.10) 0%, transparent 72%);
+    background: radial-gradient(ellipse at center, rgba(125, 211, 252, 0.15) 0%, transparent 72%);
     animation: mistDrift 13s ease-in-out infinite alternate;
 }
 
@@ -371,9 +371,9 @@
 .light-shaft {
     width: 26px;
     height: 100%;
-    background: linear-gradient(180deg, rgba(125, 211, 252, 0.30) 0%, rgba(56, 189, 248, 0.10) 45%, transparent 85%);
+    background: linear-gradient(180deg, rgba(186, 230, 253, 0.42) 0%, rgba(56, 189, 248, 0.16) 45%, transparent 85%);
     clip-path: polygon(42% 0%, 58% 0%, 100% 100%, 0% 100%);
-    opacity: calc(0.35 + var(--intensity, 0) * 0.5);
+    opacity: calc(0.45 + var(--intensity, 0) * 0.5);
     filter: blur(3px);
     animation: shaftFlicker 5.5s ease-in-out infinite;
 }
@@ -395,7 +395,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(148, 197, 226, 0.35) 0%, rgba(125, 211, 252, 0.10) 7%, transparent 26%);
+    background: linear-gradient(180deg, rgba(186, 232, 255, 0.5) 0%, rgba(125, 211, 252, 0.16) 8%, transparent 28%);
     clip-path: inherit;
 }
 
@@ -415,7 +415,7 @@
     border-radius: 2px;
     background: linear-gradient(180deg, rgba(125, 211, 252, 0.9), rgba(56, 189, 248, 0.05));
     box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-    opacity: calc(0.18 + var(--intensity, 0) * 0.6);
+    opacity: calc(0.3 + var(--intensity, 0) * 0.7);
     animation: veinPulse 4.5s ease-in-out infinite;
 }
 .crag-vein.vein-1 { left: 33%; top: 14%; height: 52px; transform: rotate(9deg); }
@@ -431,9 +431,10 @@
     border-radius: 50%;
     border: 2px solid rgba(148, 163, 184, 0.28);
     box-shadow:
-        inset 0 10px 20px rgba(125, 211, 252, 0.05),
+        inset 0 12px 24px rgba(125, 211, 252, 0.09),
         inset 0 -16px 28px rgba(0, 0, 0, 0.8),
-        0 6px 20px rgba(0, 0, 0, 0.65);
+        0 6px 24px rgba(0, 0, 0, 0.7),
+        0 0 34px rgba(56, 189, 248, 0.14);
     margin-bottom: 30px;
     /* must stay visible: the condenser spires and runic pillars
        are positioned above the dais and need to overhang it */
@@ -449,15 +450,18 @@
     padding: 2px;
     background: conic-gradient(from 190deg,
         rgba(217, 119, 6, 0) 0deg,
-        rgba(251, 191, 36, 0.85) 60deg,
-        rgba(120, 53, 15, 0.5) 150deg,
-        rgba(217, 119, 6, 0) 250deg,
+        rgba(253, 230, 138, 0.95) 55deg,
+        rgba(245, 158, 11, 0.85) 95deg,
+        rgba(120, 53, 15, 0.6) 165deg,
+        rgba(56, 189, 248, 0.5) 230deg,
+        rgba(217, 119, 6, 0) 300deg,
         rgba(217, 119, 6, 0) 360deg);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.35));
 }
 
 .dais-surface::after {
@@ -485,13 +489,13 @@
 
 .rune-outer {
     inset: 12px;
-    border: 1px dashed rgba(56, 189, 248, 0.28);
+    border: 1.5px dashed rgba(56, 189, 248, 0.5);
     animation: rotateSlow 46s linear infinite;
 }
 
 .rune-inner {
     inset: 34px;
-    border: 1px dotted rgba(245, 158, 11, 0.32);
+    border: 1.5px dotted rgba(245, 158, 11, 0.5);
     animation: rotateSlowReverse 32s linear infinite;
 }
 
@@ -499,8 +503,8 @@
     position: absolute;
     inset: 42px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(56, 189, 248, 0.08) 55%, transparent 75%);
-    opacity: calc(0.2 + var(--intensity, 0) * 0.8);
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.5) 0%, rgba(56, 189, 248, 0.16) 55%, transparent 78%);
+    opacity: calc(0.3 + var(--intensity, 0) * 0.7);
     animation: auraBreath 4s ease-in-out infinite;
 }
 
@@ -680,29 +684,32 @@
 .astrolabe-ring {
     position: absolute;
     border-radius: 50%;
-    border: 2px solid #b45309;
-    box-shadow: 0 0 12px rgba(217, 119, 6, 0.35);
+    border: 2.5px solid #b45309;
+    box-shadow: 0 0 16px rgba(217, 119, 6, 0.5), inset 0 0 10px rgba(217, 119, 6, 0.25);
 }
 
 .ring-outer {
-    width: 220px;
-    height: 220px;
-    border-color: rgba(180, 83, 9, 0.6);
+    width: 236px;
+    height: 236px;
+    border-color: rgba(217, 119, 6, 0.85);
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.55), inset 0 0 12px rgba(217, 119, 6, 0.3);
     animation: rotateOuterGimbal 20s linear infinite;
 }
 
 .ring-mid {
-    width: 170px;
-    height: 170px;
+    width: 182px;
+    height: 182px;
     border-style: dashed;
-    border-color: rgba(56, 189, 248, 0.5);
+    border-color: rgba(56, 189, 248, 0.75);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.5), inset 0 0 12px rgba(56, 189, 248, 0.25);
     animation: rotateMidGimbal 15s linear infinite reverse;
 }
 
 .ring-inner {
-    width: 130px;
-    height: 130px;
-    border-color: rgba(217, 119, 6, 0.7);
+    width: 142px;
+    height: 142px;
+    border-color: rgba(245, 158, 11, 0.9);
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.55), inset 0 0 12px rgba(245, 158, 11, 0.3);
     animation: rotateInnerGimbal 10s linear infinite;
 }
 
@@ -718,13 +725,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 11px;
-    height: 11px;
-    margin: -5.5px 0 0 -5.5px;
-    background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #7c2d12 100%);
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 50%, #7c2d12 100%);
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
-    opacity: calc(0.35 + var(--intensity, 0) * 0.5);
+    box-shadow: 0 0 16px rgba(251, 191, 36, 0.95);
+    opacity: calc(0.55 + var(--intensity, 0) * 0.45);
 }
 .rune-shard.shard-1 { transform: rotate(0deg)   translateY(-196px); }
 .rune-shard.shard-2 { transform: rotate(120deg) translateY(-186px); }
@@ -743,8 +750,8 @@
 
 .core-interactive-target {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 148px;
+    height: 148px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -765,29 +772,30 @@
 /* Slow counter-rotating halo of energy */
 .core-halo {
     position: absolute;
-    width: 116px;
-    height: 116px;
+    width: 144px;
+    height: 144px;
     border-radius: 50%;
-    border: 1px dashed rgba(125, 211, 252, 0.35);
-    opacity: calc(0.25 + var(--intensity, 0) * 0.55);
+    border: 1.5px dashed rgba(125, 211, 252, 0.55);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.3), inset 0 0 14px rgba(56, 189, 248, 0.18);
+    opacity: calc(0.35 + var(--intensity, 0) * 0.55);
     animation: rotateSlow 18s linear infinite;
     transition: opacity 0.4s ease;
 }
 
 .core-aura {
     position: absolute;
-    width: 104px;
-    height: 104px;
+    width: 136px;
+    height: 136px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(125, 211, 252, 0.45) 0%, rgba(56, 189, 248, 0.22) 45%, rgba(2, 132, 199, 0.1) 65%, transparent 82%);
-    box-shadow: 0 0 34px rgba(56, 189, 248, 0.45);
+    background: radial-gradient(circle, rgba(186, 230, 253, 0.55) 0%, rgba(56, 189, 248, 0.3) 42%, rgba(2, 132, 199, 0.14) 64%, transparent 82%);
+    box-shadow: 0 0 44px rgba(56, 189, 248, 0.55);
     transition: all 0.3s ease;
     animation: auraBreath 3s infinite ease-in-out;
 }
 
 .core-interactive-target:hover .core-aura {
-    transform: scale(1.14);
-    box-shadow: 0 0 52px rgba(125, 211, 252, 0.75);
+    transform: scale(1.16);
+    box-shadow: 0 0 64px rgba(125, 211, 252, 0.85);
 }
 
 .core-interactive-target:hover .core-crystal {
@@ -796,8 +804,8 @@
 
 .core-crystal {
     position: relative;
-    width: 66px;
-    height: 66px;
+    width: 80px;
+    height: 80px;
     transform-style: preserve-3d;
     --core-pulse-duration: 3s;
     animation: crystalFloat 4s infinite ease-in-out, crystalCorePulse var(--core-pulse-duration) infinite ease-in-out;
@@ -809,7 +817,7 @@
     inset: 0;
     background: linear-gradient(135deg, rgba(186, 230, 253, 0.9) 0%, rgba(56, 189, 248, 0.75) 38%, rgba(2, 132, 199, 0.85) 62%, rgba(15, 23, 42, 0.95) 100%);
     border: 1px solid rgba(186, 230, 253, 0.8);
-    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.35), 0 0 20px rgba(56, 189, 248, 0.55);
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.45), 0 0 28px rgba(56, 189, 248, 0.7);
 }
 
 .facet-1 { transform: rotate(0deg);   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
@@ -822,11 +830,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     background: radial-gradient(circle, #ffffff 0%, #e0f2fe 45%, #7dd3fc 100%);
     border-radius: 50%;
-    box-shadow: 0 0 16px #fff, 0 0 30px #38bdf8, 0 0 50px rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 20px #fff, 0 0 40px #38bdf8, 0 0 70px rgba(56, 189, 248, 0.7);
 }
 
 /* Slow specular sweep travelling across the gem */
@@ -843,8 +851,8 @@
 /* Click Shockwave */
 .core-shockwave {
     position: absolute;
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: 2px solid #7dd3fc;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
@@ -856,35 +864,41 @@
 }
 
 .core-label-prompt {
-    margin-top: 14px;
+    margin-top: 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.72rem;
+    gap: 10px;
+    font-size: 0.7rem;
     font-weight: 700;
-    color: var(--text-secondary);
-    letter-spacing: 0.14em;
-    background: rgba(8, 12, 22, 0.62);
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 5px 14px;
-    backdrop-filter: blur(6px);
+    color: #cbd5e1;
+    letter-spacing: 0.22em;
+    background: linear-gradient(180deg, rgba(12, 18, 32, 0.75), rgba(6, 9, 17, 0.8));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 14px;
+    padding: 6px 18px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 0 20px rgba(56, 189, 248, 0.14);
     pointer-events: none;
     animation: promptFloat 4s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(125, 211, 252, 0.35);
 }
-.core-label-prompt .prompt-key { color: var(--aether-cyan); font-size: 0.6rem; }
+.core-label-prompt .prompt-key {
+    color: var(--brass-gold);
+    font-size: 0.62rem;
+    filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.8));
+}
 
 /* ======================================================
    RESPONSIVE SCALING
    ====================================================== */
 @media (max-width: 1500px), (max-height: 900px) {
-    .foundry-structure-wrap { --foundry-scale: 0.94; }
+    .foundry-structure-wrap { --foundry-scale: 1.02; }
 }
 
 @media (max-width: 1280px) {
-    .foundry-structure-wrap { --foundry-scale: 0.86; --lift: -6px; }
+    .foundry-structure-wrap { --foundry-scale: 0.94; --lift: -6px; }
 }
 
 @media (max-width: 900px) {
-    .foundry-structure-wrap { --foundry-scale: 0.8; --lift: 0px; }
+    .foundry-structure-wrap { --foundry-scale: 0.85; --lift: 0px; }
 }
