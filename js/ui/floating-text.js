@@ -23,7 +23,7 @@ export class FloatingTextManager {
 
         let displayText = text;
         if (typeof text === 'number') {
-            displayText = `+${formatNumber(text)} Aether`;
+            displayText = `+${formatNumber(text)} $`;
         }
 
         el.textContent = displayText;
@@ -34,6 +34,11 @@ export class FloatingTextManager {
 
         el.style.left = `${x + offsetX}px`;
         el.style.top = `${y + offsetY}px`;
+        // extra juice: random scale and tilt for cash
+        const scale = 0.92 + Math.random()*0.28;
+        const rot = (Math.random()-0.5)*12;
+        el.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rot}deg)`;
+        el.style.filter = `drop-shadow(0 0 8px rgba(255,201,60,0.65))`;
 
         this.container.appendChild(el);
 

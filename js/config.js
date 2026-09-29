@@ -16,69 +16,69 @@ export const CONFIG = {
 export const BUILDINGS_DATA = [
     {
         id: 'aether_condenser',
-        name: 'Aether Condenser',
-        desc: 'Siphons ambient celestial mist from the swirling void currents.',
+        name: 'Mint Press',
+        desc: 'Mini zecca automatica: stampa banconote a raffica sul nastro.',
         baseCost: 15,
         baseProd: 1.0,
         costMult: 1.15,
-        icon: '🌀',
+        icon: '💵',
         visualKey: 'condenser',
-        lore: 'The first apparatus forged by the ancient keepers to harvest raw aetheric dew.'
+        lore: 'La prima pressa: ogni colpo sforna mazzi di cash croccanti.'
     },
     {
         id: 'resonance_furnace',
-        name: 'Resonance Furnace',
-        desc: 'Refines crude aetheric vapor into concentrated harmonic thermal energy.',
+        name: 'Gold Furnace',
+        desc: 'Fonde lingotti e cola oro liquido nella pressa centrale.',
         baseCost: 100,
         baseProd: 6.0,
         costMult: 1.15,
-        icon: '🔥',
+        icon: '🏭',
         visualKey: 'furnace',
-        lore: 'Basalt chambers resonate at exact acoustic frequencies, purifying cosmic currents.'
+        lore: 'Calore bianco, oro fuso a 1064° — riverbero ipnotico.'
     },
     {
         id: 'void_garden',
-        name: 'Void Garden',
-        desc: 'Cultivates exotic astral vegetation that exhales radiant aetheric spores.',
+        name: 'Money Tree',
+        desc: 'Albero mutante le cui foglie sono banconote che ricrescono ogni secondo.',
         baseCost: 1100,
         baseProd: 40.0,
         costMult: 1.15,
-        icon: '🌿',
+        icon: '🌳',
         visualKey: 'garden',
-        lore: 'Deep-void flora blooming on hanging terraces, fed by gravitational tides.'
+        lore: 'Foglie di dollaro fotosintetico: più luce = più cash.'
     },
     {
         id: 'astral_observatory',
-        name: 'Astral Observatory',
-        desc: 'Aligns brass optics with distant dying pulsars to draw stellar radiation.',
+        name: 'Laser Scanner',
+        desc: 'Torre laser che scansiona e duplica banconote con luce al neon.',
         baseCost: 12500,
         baseProd: 280.0,
         costMult: 1.15,
-        icon: '🔭',
+        icon: '🔫',
         visualKey: 'observatory',
-        lore: 'Enormous brass armillaries align with slumbering constellations across the dark.'
+        lore: 'Fascio turchese che vibra e stampa ologrammi di denaro.'
     },
     {
         id: 'chronal_engine',
-        name: 'Chronal Engine',
-        desc: 'Warps localized temporal currents to siphon future aether into the present.',
+        name: 'Quantum Printer',
+        desc: 'Stampante quantistica che materializza denaro dal futuro.',
         baseCost: 140000,
         baseProd: 2200.0,
         costMult: 1.15,
-        icon: '⏳',
+        icon: '🖨️',
         visualKey: 'chronal',
-        lore: 'Time is merely another fluid to be pressurized, channeled, and condensed.'
+        lore: 'Piegare il tempo per spendere prima ancora di aver guadagnato.'
     },
     {
         id: 'celestial_forge',
-        name: 'Celestial Forge',
-        desc: 'Smelts raw starlight within a magnetic crucible to synthesize pure celestial matter.',
+        name: 'Vault Core Mk II',
+        desc: 'Nucleo centrale potenziato: droni orbitali fondono diamanti in cash.',
         baseCost: 1500000,
         baseProd: 18500.0,
         costMult: 1.15,
-        icon: '⚡',
+        icon: '🏦',
         visualKey: 'forge',
-        lore: 'The pinnacle of astral craft: ignition of miniature stars within magnetic confinement.'
+        lore: 'Tre droni orbitano la pressa, saldando lingotti al plasma.'
     }
 ];
 
