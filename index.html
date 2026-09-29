@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astral Foundry — Idle Cosmic Crucible</title>
-    <meta name="description" content="An original atmospheric idle game where you command an ancient floating astral foundry harnessing celestial aether.">
+    <title>MINTED — Neon Vault • Infinite Jackpot</title>
+    <meta name="description" content="MINTED: stampa denaro infinito nella cassaforte al neon — il clicker più soddisfacente: oro, contanti e jackpot!">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/fonts.css">
@@ -21,28 +21,34 @@
             <div class="brand-section">
                 <span class="brand-emblem" aria-hidden="true">
                     <svg viewBox="0 0 48 48" fill="none">
-                        <circle cx="24" cy="24" r="21" stroke="url(#emblemRing)" stroke-width="1.6" stroke-dasharray="4 3.2"/>
-                        <ellipse cx="24" cy="24" rx="21" ry="8.5" stroke="rgba(217,119,6,.75)" stroke-width="1.1" transform="rotate(-24 24 24)"/>
-                        <ellipse cx="24" cy="24" rx="21" ry="8.5" stroke="rgba(56,189,248,.65)" stroke-width="1.1" transform="rotate(38 24 24)"/>
-                        <path d="M24 9.5 30.6 24 24 38.5 17.4 24Z" fill="url(#emblemCore)" stroke="rgba(186,230,253,.9)" stroke-width="1"/>
-                        <circle cx="24" cy="24" r="3.4" fill="#fff"/>
-                        <circle cx="24" cy="24" r="6.2" fill="url(#emblemHalo)"/>
+                        <!-- vault door -->
+                        <circle cx="24" cy="24" r="20.5" stroke="url(#emblemRing)" stroke-width="1.8"/>
+                        <circle cx="24" cy="24" r="15" stroke="rgba(255,201,60,0.32)" stroke-width="1" stroke-dasharray="2 3"/>
+                        <circle cx="24" cy="24" r="11.2" fill="url(#emblemCore)" stroke="#FFD23F" stroke-width="1.2"/>
+                        <circle cx="24" cy="24" r="3.2" fill="#1A0A00" stroke="#FFD23F" stroke-width="1"/>
+                        <!-- bolts -->
+                        <circle cx="24" cy="8.2" r="2" fill="#FFD23F" stroke="#7A4000" stroke-width="0.7"/>
+                        <circle cx="24" cy="39.8" r="2" fill="#FFD23F" stroke="#7A4000" stroke-width="0.7"/>
+                        <circle cx="8.2" cy="24" r="2" fill="#FFD23F" stroke="#7A4000" stroke-width="0.7"/>
+                        <circle cx="39.8" cy="24" r="2" fill="#FFD23F" stroke="#7A4000" stroke-width="0.7"/>
+                        <circle cx="12.8" cy="12.8" r="1.5" fill="#00E5FF" stroke="#0A3A4A" stroke-width="0.6"/>
+                        <circle cx="35.2" cy="12.8" r="1.5" fill="#FF1A75" stroke="#5A0A20" stroke-width="0.6"/>
+                        <circle cx="12.8" cy="35.2" r="1.5" fill="#FF1A75" stroke="#5A0A20" stroke-width="0.6"/>
+                        <circle cx="35.2" cy="35.2" r="1.5" fill="#00E5FF" stroke="#0A3A4A" stroke-width="0.6"/>
+                        <text x="24" y="27.5" text-anchor="middle" font-size="10" font-weight="900" fill="#FFD23F" style="font-family: monospace; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));">$</text>
                         <defs>
                             <linearGradient id="emblemRing" x1="6" y1="4" x2="42" y2="44">
-                                <stop stop-color="#7dd3fc"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#a855f7"/>
+                                <stop stop-color="#FFD23F"/><stop offset=".42" stop-color="#FF8A00"/><stop offset=".72" stop-color="#FF1A75"/><stop offset="1" stop-color="#00E5FF"/>
                             </linearGradient>
-                            <linearGradient id="emblemCore" x1="24" y1="9" x2="24" y2="39">
-                                <stop stop-color="#e0f2fe"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#075985"/>
-                            </linearGradient>
-                            <radialGradient id="emblemHalo">
-                                <stop stop-color="rgba(125,211,252,.85)"/><stop offset="1" stop-color="rgba(56,189,248,0)"/>
+                            <radialGradient id="emblemCore">
+                                <stop offset="0%" stop-color="#FFF7CC"/><stop offset="38%" stop-color="#FFD23F"/><stop offset="72%" stop-color="#FF8A00"/><stop offset="100%" stop-color="#7A3B00"/>
                             </radialGradient>
                         </defs>
                     </svg>
                 </span>
                 <div class="brand-text">
-                    <h1 class="game-title">ASTRAL FOUNDRY</h1>
-                    <span class="game-subtitle">Cosmic Crucible</span>
+                    <h1 class="game-title">MINTED</h1>
+                    <span class="game-subtitle">Neon Vault — Infinite Jackpot</span>
                 </div>
             </div>
 
@@ -118,18 +124,19 @@
                 <div class="tab-content-container">
                     <!-- Tab: Overview -->
                     <div class="tab-panel active" id="tab-overview">
-                        <div class="overview-welcome-card">
+                        <div class="overview-welcome-card" style="background: linear-gradient(135deg, rgba(255,201,60,0.12), rgba(255,26,117,0.08)); border-color: rgba(255,201,60,0.24);">
                             <div class="overview-card-crest" aria-hidden="true">
                                 <svg viewBox="0 0 40 40" fill="none">
-                                    <path d="M20 4 33 20 20 36 7 20Z" stroke="rgba(125,211,252,.75)" stroke-width="1.4"/>
-                                    <path d="M20 10.5 27.8 20 20 29.5 12.2 20Z" fill="rgba(56,189,248,.14)" stroke="rgba(245,158,71,.8)" stroke-width="1.2"/>
-                                    <circle cx="20" cy="20" r="3" fill="#e0f2fe"/>
+                                    <circle cx="20" cy="20" r="15" stroke="rgba(255,201,60,0.55)" stroke-width="1.4"/>
+                                    <circle cx="20" cy="20" r="9" fill="url(#ovGold)" stroke="#FFD23F" stroke-width="1.1"/>
+                                    <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="900" fill="#4A1A00" style="font-family: monospace;">$</text>
+                                    <defs><radialGradient id="ovGold"><stop stop-color="#FFF7CC"/><stop offset="1" stop-color="#FF8A00"/></radialGradient></defs>
                                 </svg>
                             </div>
                             <div class="overview-card-body">
-                                <h3 class="overview-card-title">Foundry Status: <span class="status-ok">Operational</span></h3>
+                                <h3 class="overview-card-title">Vault Status: <span class="status-ok" style="color:#FFD23F; text-shadow:0 0 8px rgba(255,201,60,0.7);">JACKPOT ACTIVE ◆</span></h3>
                                 <p class="overview-card-text">
-                                    Suspended within the celestial cloudbank, this ancient crucible channels the raw fabric of the void. Harvest <strong>Aether</strong> to awaken dormant structures, transcribe forgotten codices, and expand the floating foundry.
+                                    Benvenuto nella <strong style="color:#FFD23F;">Neon Vault</strong> — la cassaforte che stampa denaro infinito. Tappa la pressa centrale, accumula <strong style="color:#FFD23F;">CASH</strong>, compra presse, forni d'oro e alberi di soldi. Guarda la volta riempirsi e i neon impazzire. Più produci, più piovono banconote!
                                 </p>
                             </div>
                         </div>
@@ -137,14 +144,14 @@
                         <div class="quick-instructions">
                             <h4 class="directives-title">
                                 <span class="directives-rule" aria-hidden="true"></span>
-                                Foundry Directives
+                                Istruzioni Rapide
                                 <span class="directives-rule" aria-hidden="true"></span>
                             </h4>
                             <ul class="directives-list">
-                                <li><strong>Channel Core:</strong> Click the central crystal or press <kbd>Space</kbd> to draw raw Aether.</li>
-                                <li><strong>Construct:</strong> Build Condensers &amp; Furnaces to establish automated passive output.</li>
-                                <li><strong>Evolve:</strong> Notice the physical Foundry expand and evolve visually with each tier.</li>
-                                <li><strong>Automate &amp; Research:</strong> Build drones, activate construct matrices, and transcribe ancient theorems.</li>
+                                <li><strong style="color:#FFD23F;">TAPPA LA PRESSA:</strong> Clicca il nucleo d'oro al centro o premi <kbd>Spazio</kbd> — guarda i soldi esplodere!</li>
+                                <li><strong>Costruisci:</strong> Presse &amp; forni stampano cash automaticamente — scale d'oro visibili.</li>
+                                <li><strong>Goduria visiva:</strong> La volta si evolve ad ogni livello: laser, droni, anelli jackpot!</li>
+                                <li><strong>Automazione &amp; Ricerca:</strong> Sblocca droni, nastri e teoremi per fare soldi mentre dormi.</li>
                             </ul>
                         </div>
                     </div>
@@ -193,37 +200,44 @@
                 </div>
             </section>
 
-            <!-- CENTER COLUMN: ASTRAL FOUNDRY VIEWPORT -->
-            <section class="center-viewport" aria-label="Astral Foundry Central Viewport">
-                <!-- Atmospheric Canvas: Stars, Nebulae, and Dynamic Particles -->
+            <!-- CENTER COLUMN: NEON VAULT SHOWCASE — HERO -->
+            <section class="center-viewport" aria-label="Neon Vault Central Press">
                 <canvas id="foundry-canvas"></canvas>
-
-                <!-- Layered Evolving Visual Model of the Foundry -->
                 <div id="foundry-model-container"></div>
 
-                <!-- Cinematic HUD corners -->
+                <!-- Top jackpot HUD -->
+                <div class="vault-top-hud" aria-hidden="true">
+                    <div class="vault-badge"><span class="live-dot"></span> VAULT LIVE • JACKPOT MODE</div>
+                </div>
+                <!-- Bottom production ticker -->
+                <div class="vault-bottom-hud" aria-hidden="true">
+                    <div class="vault-ticker">
+                        <span class="vault-ticker-label">MINTING</span>
+                        <span class="vault-ticker-val" id="vault-ticker-rate">+0 /s</span>
+                        <span style="margin-left:auto; font-size:0.62rem; color:#00E5FF; font-weight:800; letter-spacing:0.08em;">TAP THE PRESS!</span>
+                    </div>
+                </div>
+
+                <!-- Cinematic HUD corners — luxe gold -->
                 <div class="viewport-hud hud-tl" aria-hidden="true"></div>
                 <div class="viewport-hud hud-tr" aria-hidden="true"></div>
                 <div class="viewport-hud hud-bl" aria-hidden="true"></div>
                 <div class="viewport-hud hud-br" aria-hidden="true"></div>
             </section>
 
-            <!-- RIGHT COLUMN: RESOURCE & PROGRESSION PANEL -->
-            <aside class="right-panel" aria-label="Foundry Energy Reserves">
-                <!-- Primary Resource Card: Aether -->
+            <!-- RIGHT COLUMN: VAULT PANEL -->
+            <aside class="right-panel" aria-label="Vault Reserves">
                 <div class="resource-card">
                     <div class="res-header">
-                        <span class="res-header-label"><span class="res-header-dot" aria-hidden="true"></span>Aether Reserve</span>
-                        <span class="icon" title="Primary Celestial Fuel">
-                            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.2 9.9 6.1 14.8 8 9.9 9.9 8 14.8 6.1 9.9 1.2 8 6.1 6.1Z" fill="currentColor"/></svg>
-                        </span>
+                        <span class="res-header-label"><span class="res-header-dot" aria-hidden="true"></span>Vault Reserve</span>
+                        <span class="icon" title="Cash">$</span>
                     </div>
                     <div class="res-main-display">
                         <span class="res-value" id="res-aether-amount">0</span>
-                        <span class="res-unit">AE</span>
+                        <span class="res-unit">$</span>
                     </div>
                     <div class="res-rate-row">
-                        <span class="rate-label">Harvest Rate</span>
+                        <span class="rate-label">Minting Rate</span>
                         <span class="rate-val" id="res-cps-rate">+0 /s</span>
                     </div>
                     <div class="res-sparkline" aria-hidden="true">
@@ -231,14 +245,13 @@
                     </div>
                 </div>
 
-                <!-- Rate Multipliers & Channel Power -->
                 <div class="stat-pills-row">
                     <div class="stat-pill">
-                        <span class="pill-label">Global Flux</span>
+                        <span class="pill-label">Jackpot Multiplier</span>
                         <span class="pill-val" id="res-global-multiplier">1.0x</span>
                     </div>
                     <div class="stat-pill">
-                        <span class="pill-label">Manual Pulse</span>
+                        <span class="pill-label">Tap Power</span>
                         <span class="pill-val" id="res-click-power">+1</span>
                     </div>
                 </div>
@@ -268,25 +281,23 @@
                     </div>
                 </div>
 
-                <!-- Quick Reference / Filler card -->
                 <div class="quick-ref-card" aria-hidden="true">
-                    <div class="quick-ref-title">Channel Log</div>
+                    <div class="quick-ref-title">Vault Controls</div>
                     <ul class="quick-ref-list">
-                        <li><kbd>Space</kbd><span>Draw Aether</span></li>
-                        <li><kbd>M</kbd><span>Mute / Unmute</span></li>
-                        <li><kbd>Ctrl</kbd>+<kbd>S</kbd><span>Manual Save</span></li>
+                        <li><kbd>Space</kbd><span>Stampa Cash</span></li>
+                        <li><kbd>M</kbd><span>Muto</span></li>
+                        <li><kbd>Ctrl</kbd>+<kbd>S</kbd><span>Salva</span></li>
                     </ul>
                     <div class="quick-ref-footer">
                         <span class="quick-ref-dot"></span>
-                        Foundry link stable
+                        Vault link • ULTRA RICH MODE
                     </div>
                 </div>
 
-                <!-- Interactive Manual Channel Button -->
-                <button class="btn-primary" id="channel-action-btn" style="padding: 12px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <span>✦</span>
-                    <span>Channel Aether Core</span>
-                    <span>✦</span>
+                <button class="btn-primary" id="channel-action-btn" style="padding: 13px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(180deg, #FFD23F 0%, #FF8A00 100%); color:#1A0A00; font-weight:900; border-radius:14px; border:1px solid #FFD23F; box-shadow: 0 0 18px rgba(255,201,60,0.45), 0 8px 18px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.55); letter-spacing:0.06em; text-shadow:0 1px 0 rgba(255,255,255,0.42);">
+                    <span>💰</span>
+                    <span>MINTA CASH ORORA!</span>
+                    <span>💰</span>
                 </button>
             </aside>
         </main>

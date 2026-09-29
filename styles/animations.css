@@ -355,3 +355,28 @@
             0 0 0 8px rgba(56, 189, 248, 0.1);
     }
 }
+
+/* MINTED — vault juice */
+@keyframes vaultShake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+@keyframes jackpotFlash {
+    0% { filter: brightness(1) saturate(1); }
+    28% { filter: brightness(1.35) saturate(1.4); }
+    100% { filter: brightness(1) saturate(1); }
+}
+@keyframes comboPop {
+    0% { opacity:0; transform: translateX(-50%) scale(0.72) translateY(8px); }
+    22% { opacity:1; transform: translateX(-50%) scale(1.12) translateY(0); }
+    78% { opacity:1; transform: translateX(-50%) scale(1) translateY(0); }
+    100% { opacity:0; transform: translateX(-50%) scale(0.98) translateY(-14px); }
+}
+@keyframes floatUpFadeGold {
+    0% { opacity:0; transform: translate(-50%, -10%) scale(0.88) rotate(-3deg); }
+    18% { opacity:1; transform: translate(-50%, -58%) scale(1.08) rotate(2deg); }
+    78% { opacity:0.95; }
+    100% { opacity:0; transform: translate(-50%, -138%) scale(0.96) rotate(-2deg); }
+}

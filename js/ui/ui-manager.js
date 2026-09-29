@@ -58,6 +58,7 @@ export class UIManager {
         // Right Resource Panel
         this.dom.aetherDisplay = document.getElementById('res-aether-amount');
         this.dom.cpsDisplay = document.getElementById('res-cps-rate');
+        this.dom.vaultTicker = document.getElementById('vault-ticker-rate');
         this.dom.multDisplay = document.getElementById('res-global-multiplier');
         this.dom.clickPowerDisplay = document.getElementById('res-click-power');
         this.dom.shardsSection = document.getElementById('res-shards-section');
@@ -200,20 +201,25 @@ export class UIManager {
         const gained = this.resourceSystem.channelCore();
         this.foundryModel.pulseCore();
 
-        // Canvas burst particles
+        // Canvas burst particles — extra juicy for vault
         if (this.foundryCanvas) {
             const rect = this.dom.coreChannelBtn.getBoundingClientRect();
             const canvasRect = this.dom.foundryCanvas.getBoundingClientRect();
             const cx = (rect.left + rect.width / 2) - canvasRect.left;
             const cy = (rect.top + rect.height / 2) - canvasRect.top;
-            this.foundryCanvas.spawnBurst(cx, cy, 18, !!this.gameState.getState().activeSurge);
+            const surge = !!this.gameState.getState().activeSurge;
+            const burstCount = surge ? 32 : 24;
+            this.foundryCanvas.spawnBurst(cx, cy, burstCount, surge);
         }
 
-        // Floating number
+        // Floating cash number
         const clientX = e ? e.clientX : window.innerWidth / 2;
         const clientY = e ? e.clientY : window.innerHeight / 2;
         this.floatingText.spawn(clientX, clientY, gained, 'aether');
         this.bumpResourceValue();
+
+        // audio pitch based on combo
+        try { audio.playClick && audio.playClick(); } catch(e){}
 
         this.updateResourcePanel();
     }
@@ -311,6 +317,9 @@ export class UIManager {
 
         if (this.dom.cpsDisplay) {
             this.dom.cpsDisplay.textContent = formatRate(state.lastCalculatedCps);
+        }
+        if (this.dom.vaultTicker) {
+            this.dom.vaultTicker.textContent = formatRate(state.lastCalculatedCps);
         }
 
         if (this.dom.multDisplay) {
@@ -410,7 +419,7 @@ export class UIManager {
                     <div class="building-footer">
                         <div class="building-cost-label">
                             <span class="cost-prefix">Cost for +${countToBuy}:</span>
-                            <span class="cost-value ${canAfford ? 'affordable' : 'unaffordable'}">${formatNumber(totalCost)} Aether</span>
+                            <span class="cost-value ${canAfford ? 'affordable' : 'unaffordable'}">${formatNumber(totalCost)} $</span>
                         </div>
                         <button class="btn-primary buy-building-btn" data-building-id="${b.id}" ${canAfford ? '' : 'disabled'}>
                             Construct +${countToBuy}
@@ -449,7 +458,7 @@ export class UIManager {
                 const canAfford = countToBuy > 0 && state.aether >= totalCost;
                 btn.disabled = !canAfford;
                 btn.textContent = `Construct +${countToBuy}`;
-                costVal.textContent = `${formatNumber(totalCost)} Aether`;
+                costVal.textContent = `${formatNumber(totalCost)} $`;
                 costVal.className = `cost-value ${canAfford ? 'affordable' : 'unaffordable'}`;
             }
         });
@@ -470,7 +479,7 @@ export class UIManager {
                     <div class="headline-rate">${formatRate(prod.totalCps)}</div>
                 </div>
                 <div class="prod-subline">
-                    Manual Channel: <strong>${formatNumber(prod.clickPower)} Aether/pulse</strong>
+                    Tap Power: <strong>${formatNumber(prod.clickPower)} $ / tap</strong>
                 </div>
             </div>
 
@@ -571,7 +580,7 @@ export class UIManager {
                                 ${purchased ? `
                                     <span class="badge-purchased">✓ Synchronized</span>
                                 ` : `
-                                    <span class="cost ${affordable ? 'can-afford' : 'cant-afford'}">${formatNumber(u.cost)} Aether</span>
+                                    <span class="cost ${affordable ? 'can-afford' : 'cant-afford'}">${formatNumber(u.cost)} $</span>
                                     <button class="btn-upgrade-buy" data-upgrade-id="${u.id}" ${affordable ? '' : 'disabled'}>Forge</button>
                                 `}
                             </div>
@@ -644,7 +653,7 @@ export class UIManager {
                                 ${researched ? `
                                     <span class="node-badge-researched">✦ Transcribed</span>
                                 ` : `
-                                    <span class="node-cost ${affordable ? 'affordable' : 'unaffordable'}">${formatNumber(cost)} Aether</span>
+                                    <span class="node-cost ${affordable ? 'affordable' : 'unaffordable'}">${formatNumber(cost)} $</span>
                                     <button class="btn-research-unlock" data-node-id="${node.id}" ${canUnlock && affordable ? '' : 'disabled'}>
                                         ${canUnlock ? 'Research' : 'Locked'}
                                     </button>
@@ -1037,7 +1046,7 @@ export class UIManager {
             const canAfford = countToBuy > 0 && state.aether >= totalCost;
 
             buildingsHtml += `
-                <button class="quick-building-chip ${canAfford ? 'affordable' : 'unaffordable'}" data-building-id="${b.id}" title="${b.name}: ${formatNumber(totalCost)} Aether">
+                <button class="quick-building-chip ${canAfford ? 'affordable' : 'unaffordable'}" data-building-id="${b.id}" title="${b.name}: ${formatNumber(totalCost)} $">
                     <span class="chip-icon">${b.icon}</span>
                     <span class="chip-info">
                         <span class="chip-name">${b.name.split(' ')[0]}</span>
@@ -1069,7 +1078,7 @@ export class UIManager {
                         <span class="upg-icon">${nextUpg.icon}</span>
                         <div class="upg-meta">
                             <span class="upg-title">${nextUpg.name}</span>
-                            <span class="upg-cost">${formatNumber(nextUpg.cost)} Aether</span>
+                            <span class="upg-cost">${formatNumber(nextUpg.cost)} $</span>
                         </div>
                     </button>
                 `;
@@ -1139,7 +1148,7 @@ export class UIManager {
                         </div>
                         <div class="stat-row highlight">
                             <span>Aether Harvested:</span>
-                            <strong class="aether-gain">+${formatNumber(report.aetherEarned)} Aether</strong>
+                            <strong class="aether-gain">+${formatNumber(report.aetherEarned)} $</strong>
                         </div>
                         <div class="stat-row">
                             <span>Condensation Efficiency:</span>
