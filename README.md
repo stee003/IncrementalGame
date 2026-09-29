@@ -87,7 +87,8 @@ I test girano con Node (>= 18) in modalità ES Modules; il gioco in sé non ha d
 
 ```
 index.html              Markup statico: header, schede, modali
-styles/                 CSS (main, layout, foundry, components, animations)
+styles/                 CSS (fonts, main, layout, foundry, components, animations)
+assets/fonts/           Font woff2 locali (testo + emoji colorate CBDT)
 js/
   main.js               Entry point: game loop, delta-time, scorciatoie da tastiera
   config.js             Tutti i dati di gioco bilanciati (edifici, upgrade, research, milestone, perk)
@@ -102,7 +103,18 @@ tests/                  Suite di test (logica + DOM con jsdom)
 
 ## 🎨 Grafica e rendering
 
-La scena è composta da due strati che cooperano.
+L'interfaccia ha subito un restyle completo: sistema di design basato su token CSS (colori, spaziature, raggi,
+ombre), header e pannelli in vetrofumé, accenti cromatici per livello di edificio, barre di progresso luminose
+e notifiche con icona emoji. La scena è composta da due strati che cooperano.
+
+**`styles/fonts.css` + `assets/fonts/` — tipografia e emoji autonomi**
+
+- **14 face `@font-face` locali** (Space Grotesk, Cinzel, JetBrains Mono, Inter e Noto Color Emoji): nessun CDN,
+  nessuna richiesta di rete — il gioco rende identico anche offline.
+- Le **emoji a colori** usano un font Noto Color Emoji in formato **CBDT/CBLC** (bitmap) con `unicode-range`
+  generato dai soli codepoint presenti nel gioco; il testo normale resta su stack `system-ui` con i font locali
+  in testa.
+- Font di testo in formato **woff2 subset** per tenere leggero il caricamento iniziale.
 
 **`js/visuals/foundry-canvas.js` — lo sfondo cosmico (canvas 2D)**
 

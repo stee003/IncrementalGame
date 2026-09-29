@@ -1,18 +1,19 @@
 /**
  * Astral Foundry - Main & Design System
  * Deep Dark-Fantasy / Cosmic-Industrial Theme
+ *
+ * Typography comes from styles/fonts.css (self-hosted, no CDN).
+ * The emoji font is part of every stack so game icons always render.
  */
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
     /* Color Palette: Cosmic Void, Basalt Stone, Antique Brass, Aether Cyan, Amethyst Astral */
-    --bg-void: #06080e;
-    --bg-deep: #0a0e17;
-    --bg-surface: #0f1624;
+    --bg-void: #05070d;
+    --bg-deep: #090d16;
+    --bg-surface: #0e1522;
     --bg-surface-elevated: #162032;
-    --bg-panel: rgba(14, 21, 35, 0.75);
-    --bg-panel-border: rgba(56, 189, 248, 0.12);
+    --bg-panel: rgba(11, 17, 29, 0.82);
+    --bg-panel-border: rgba(56, 189, 248, 0.14);
     --bg-glass: rgba(15, 23, 42, 0.65);
     --bg-glass-hover: rgba(30, 41, 59, 0.7);
 
@@ -39,34 +40,41 @@
 
     /* Text & Legibility */
     --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text-secondary: #9fb0c6;
+    --text-muted: #6b7c94;
     --text-accent: #38bdf8;
     --text-gold: #fbbf24;
 
     /* Borders & Shadows */
-    --border-subtle: rgba(148, 163, 184, 0.1);
-    --border-brass: rgba(217, 119, 6, 0.3);
+    --border-subtle: rgba(148, 163, 184, 0.12);
+    --border-brass: rgba(217, 119, 6, 0.34);
     --border-aether: rgba(56, 189, 248, 0.35);
 
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
-    --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --shadow-deep: 0 12px 34px rgba(0, 0, 0, 0.72);
     --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.2);
+    --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
 
     /* Typography */
     --font-heading: 'Cinzel', 'Georgia', serif;
     --font-decorative: 'Cinzel Decorative', 'Cinzel', serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-emoji: 'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji', 'Twemoji Mozilla', sans-serif;
 
     /* Layout metrics */
-    --header-height: 54px;
-    --bottom-bar-height: 72px;
-    --nav-width: 380px;
-    --progression-width: 320px;
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
+    --header-height: 58px;
+    --bottom-bar-height: 74px;
+    --nav-width: 390px;
+    --progression-width: 326px;
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 *, *::before, *::after {
@@ -81,27 +89,37 @@ html, body {
     overflow: hidden;
     background-color: var(--bg-void);
     color: var(--text-primary);
-    font-family: var(--font-body);
+    font-family: var(--font-body), var(--font-emoji);
     font-size: 14px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     user-select: none;
 }
 
+/* Every element inherits the emoji fallback so 🌀-style game icons
+   always resolve against the bundled Noto Color Emoji subsets. */
+* { font-family: inherit; }
+h1, h2, h3, h4, h5, h6, .cinzel { font-family: var(--font-heading), var(--font-emoji); }
+.mono, .cost-value, .pill-val, .rate-val { font-family: var(--font-mono), var(--font-emoji); }
+.emoji, .building-icon, .upgrade-icon, .branch-icon, .node-icon-box,
+.auto-icon, .perk-icon, .milestone-icon, .chip-icon, .upg-icon,
+.toast-icon, .lock-icon, .icon-emoji { font-family: var(--font-emoji); }
+
 /* Scrollbars */
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
 }
 ::-webkit-scrollbar-track {
-    background: rgba(10, 14, 23, 0.5);
+    background: rgba(6, 9, 16, 0.6);
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(56, 189, 248, 0.2);
-    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.35), rgba(168, 85, 247, 0.28));
+    border-radius: 4px;
+    border: 1px solid rgba(6, 9, 16, 0.8);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(56, 189, 248, 0.4);
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.6), rgba(168, 85, 247, 0.45));
 }
 
 /* Numbers tick every frame: keep glyph widths stable so nothing jitters */
@@ -146,13 +164,13 @@ html, body {
 
 /* Headings */
 h1, h2, h3, h4, .cinzel {
-    font-family: var(--font-heading);
+    font-family: var(--font-heading), var(--font-emoji);
     letter-spacing: 0.04em;
     font-weight: 700;
 }
 
 button {
-    font-family: var(--font-body);
+    font-family: var(--font-body), var(--font-emoji);
     cursor: pointer;
     border: none;
     outline: none;
@@ -160,7 +178,34 @@ button {
     transition: all 0.18s ease;
 }
 
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid rgba(56, 189, 248, 0.65);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
 input, select, textarea {
-    font-family: var(--font-body);
+    font-family: var(--font-body), var(--font-emoji);
     outline: none;
+}
+
+kbd {
+    font-family: var(--font-mono);
+    font-size: 0.72em;
+    background: linear-gradient(180deg, #1e293b, #131c2e);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #475569;
+    border-bottom-width: 2px;
+    color: #dbeafe;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+::selection {
+    background: rgba(56, 189, 248, 0.35);
+    color: #fff;
 }

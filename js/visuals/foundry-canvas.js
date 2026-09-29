@@ -39,13 +39,13 @@ const SNOW = [226, 232, 240];
 
 /** Nebula clouds: normalised anchor, radius factor, drift and breathing. */
 const NEBULA_DEFS = [
-    { x: 0.18, y: 0.26, r: 0.62, c: AETHER,  i: 0.20, ax: 0.05, ay: 0.04, sp: 0.055 },
-    { x: 0.80, y: 0.36, r: 0.70, c: ASTRAL,  i: 0.17, ax: 0.06, ay: 0.05, sp: 0.041 },
-    { x: 0.52, y: 0.78, r: 0.78, c: INDIGO,  i: 0.16, ax: 0.05, ay: 0.04, sp: 0.033 },
-    { x: 0.34, y: 0.62, r: 0.42, c: AMETHYST,i: 0.11, ax: 0.07, ay: 0.06, sp: 0.067 },
-    { x: 0.88, y: 0.78, r: 0.46, c: DEEP_SKY,i: 0.13, ax: 0.05, ay: 0.06, sp: 0.048 },
-    { x: 0.08, y: 0.86, r: 0.40, c: GOLD,    i: 0.07, ax: 0.06, ay: 0.04, sp: 0.036 },
-    { x: 0.66, y: 0.14, r: 0.36, c: ROSE,    i: 0.05, ax: 0.07, ay: 0.05, sp: 0.059 }
+    { x: 0.18, y: 0.26, r: 0.66, c: AETHER,  i: 0.27, ax: 0.05, ay: 0.04, sp: 0.055 },
+    { x: 0.80, y: 0.36, r: 0.74, c: ASTRAL,  i: 0.24, ax: 0.06, ay: 0.05, sp: 0.041 },
+    { x: 0.52, y: 0.78, r: 0.82, c: INDIGO,  i: 0.22, ax: 0.05, ay: 0.04, sp: 0.033 },
+    { x: 0.34, y: 0.62, r: 0.46, c: AMETHYST,i: 0.16, ax: 0.07, ay: 0.06, sp: 0.067 },
+    { x: 0.88, y: 0.78, r: 0.50, c: DEEP_SKY,i: 0.19, ax: 0.05, ay: 0.06, sp: 0.048 },
+    { x: 0.08, y: 0.86, r: 0.44, c: GOLD,    i: 0.10, ax: 0.06, ay: 0.04, sp: 0.036 },
+    { x: 0.66, y: 0.14, r: 0.40, c: ROSE,    i: 0.08, ax: 0.07, ay: 0.05, sp: 0.059 }
 ];
 
 /** Three depth strata of stars: far dust, mid field, near beacons. */
@@ -473,8 +473,9 @@ export class FoundryCanvas {
         // the surrounding panels instead of ending on a visible seam.
         if (!this.backgroundGradient) {
             const g = ctx.createRadialGradient(w * 0.5, h * 0.46, 0, w * 0.5, h * 0.46, Math.max(w, h) * 0.8);
-            g.addColorStop(0, 'rgba(26, 44, 76, 0.55)');
-            g.addColorStop(0.45, 'rgba(13, 21, 39, 0.28)');
+            g.addColorStop(0, 'rgba(30, 54, 94, 0.6)');
+            g.addColorStop(0.38, 'rgba(20, 30, 62, 0.34)');
+            g.addColorStop(0.7, 'rgba(24, 16, 48, 0.16)');
             g.addColorStop(1, 'rgba(4, 6, 12, 0)');
             this.backgroundGradient = g;
         }
@@ -483,14 +484,59 @@ export class FoundryCanvas {
         ctx.fillRect ? ctx.fillRect(0, 0, w, h) : ctx.clearRect(0, 0, w, h);
     }
 
+    /**
+     * Wide elliptical band of light low in the frame: gives the island a
+     * horizon to float above and warms the transition into the side panels.
+     */
+    drawHorizonGlow() {
+        if (!this.caps || !this.caps.gradients) return;
+        const ctx = this.ctx;
+        const w = this.width;
+        const h = this.height;
+        const pulse = 0.75 + 0.25 * Math.sin(this.time * 0.6);
+        const boost = (0.5 + this.activity * 0.6 + (this.surgeActive ? 0.35 : 0)) * pulse;
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+
+        // cool horizon band beneath the foundry
+        ctx.translate(w * 0.5, h * 0.78);
+        ctx.scale(1, 0.22);
+        const band = ctx.createRadialGradient(0, 0, 0, 0, 0, w * 0.55);
+        const col = this.surgeActive ? GOLD : DEEP_SKY;
+        band.addColorStop(0, rgba(col, 0.34 * boost));
+        band.addColorStop(0.5, rgba(AETHER, 0.12 * boost));
+        band.addColorStop(1, rgba(AETHER, 0));
+        ctx.fillStyle = band;
+        ctx.beginPath();
+        ctx.arc(0, 0, w * 0.55, 0, TAU);
+        ctx.fill();
+        ctx.restore();
+
+        // faint amethyst wash in the upper corners
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        const wl = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.max(w, h) * 0.4);
+        wl.addColorStop(0, rgba(ASTRAL, 0.1 * boost));
+        wl.addColorStop(1, rgba(ASTRAL, 0));
+        ctx.fillStyle = wl;
+        ctx.fillRect(0, 0, w * 0.4, h * 0.35);
+        const wr = ctx.createRadialGradient(w, 0, 0, w, 0, Math.max(w, h) * 0.4);
+        wr.addColorStop(0, rgba(INDIGO, 0.12 * boost));
+        wr.addColorStop(1, rgba(INDIGO, 0));
+        ctx.fillStyle = wr;
+        ctx.fillRect(w * 0.6, 0, w * 0.4, h * 0.35);
+        ctx.restore();
+    }
+
     drawNebulae(dt) {
         const ctx = this.ctx;
         const w = this.width;
         const h = this.height;
         const px = this.pointer.x;
         const py = this.pointer.y;
-        const boost = 1 + this.activity * 0.45 + (this.surgeActive ? 0.35 : 0);
-        const surgeTint = this.surgeActive ? 0.35 : 0;
+        const boost = 1 + this.activity * 0.55 + (this.surgeActive ? 0.45 : 0);
+        const surgeTint = this.surgeActive ? 0.4 : 0;
 
         ctx.save();
         if (this.caps.gradients) ctx.globalCompositeOperation = 'lighter';
@@ -575,9 +621,9 @@ export class FoundryCanvas {
     drawCoreBloom(dt) {
         const ctx = this.ctx;
         const pulse = 0.5 + 0.5 * Math.sin(this.time * 1.35);
-        const intensity = 0.10 + pulse * 0.05 + this.activity * 0.22 + (this.surgeActive ? 0.12 : 0);
+        const intensity = 0.15 + pulse * 0.06 + this.activity * 0.26 + (this.surgeActive ? 0.15 : 0);
         const color = this.surgeActive ? GOLD : AETHER;
-        const radius = (this.width * 0.30 + this.height * 0.16) * (0.92 + pulse * 0.12 + this.activity * 0.2);
+        const radius = (this.width * 0.33 + this.height * 0.18) * (0.92 + pulse * 0.12 + this.activity * 0.2);
 
         ctx.save();
         if (this.caps.gradients) ctx.globalCompositeOperation = 'lighter';
@@ -905,27 +951,30 @@ export class FoundryCanvas {
         // 1. Deep space wash
         this.drawBackdrop();
 
-        // 2. Nebula clouds
+        // 2. Horizon + corner aurora washes
+        this.drawHorizonGlow();
+
+        // 3. Nebula clouds
         this.drawNebulae(dt);
 
-        // 3. Starfield
+        // 4. Starfield
         this.drawStars(dt);
 
-        // 4. Core bloom behind the foundry
+        // 5. Core bloom behind the foundry
         this.drawCoreBloom(dt);
 
         if (!this.particlesEnabled) return;
 
-        // 5. Aether currents
+        // 6. Aether currents
         this.drawStreams(dt);
 
-        // 6. Shooting stars
+        // 7. Shooting stars
         this.drawShootingStars(dt);
 
-        // 7. Drifting motes
+        // 8. Drifting motes
         this.drawMotes(dt);
 
-        // 8. Click sparks & shockwave rings
+        // 9. Click sparks & shockwave rings
         this.emitCoreSparks(dt);
         this.drawBursts(dt);
         this.drawRings(dt);

@@ -252,6 +252,15 @@
    ACCESSIBILITY: honour the OS reduced-motion preference
    ====================================================== */
 @media (prefers-reduced-motion: reduce) {
+    .game-title,
+    .brand-emblem svg,
+    .resource-card::before,
+    .resource-card::after,
+    .res-sparkline span,
+    .res-header-dot,
+    .overview-card-crest svg,
+    .quick-ref-dot,
+    .tab-panel.active > *,
     .foundry-layer,
     .astrolabe-ring,
     .shard-layer,
@@ -277,3 +286,72 @@
     }
 }
 
+
+/* ======================================================
+   VISUAL UPGRADE PASS - keyframes
+   ====================================================== */
+
+/* Register the angle so the resource-card border sheen can animate */
+@property --sheen-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes sheenRotate {
+    to { --sheen-angle: 360deg; }
+}
+
+@keyframes emblemSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Slow metallic light travelling across the game title */
+@keyframes titleSheen {
+    0%, 100%  { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+}
+
+/* Micro-pop when the aether counter jumps (e.g. after a click) */
+@keyframes valueBump {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.055); }
+    100% { transform: scale(1); }
+}
+
+/* Equaliser bars under the reserve readout */
+@keyframes eqBar {
+    0%, 100% { transform: scaleY(0.45); opacity: 0.55; }
+    50%      { transform: scaleY(1);    opacity: 1; }
+}
+
+/* Staggered entrance of children when a tab opens */
+@keyframes panelItemIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Overview crest gently floats */
+@keyframes crestFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-4px) rotate(4deg); }
+}
+
+/* Channel button halo breathing until pressed */
+@keyframes channelBreath {
+    0%, 100% {
+        box-shadow:
+            0 6px 22px rgba(2, 132, 199, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4),
+            inset 0 -8px 16px rgba(0, 0, 0, 0.35),
+            0 0 0 0 rgba(56, 189, 248, 0);
+    }
+    50% {
+        box-shadow:
+            0 8px 26px rgba(2, 132, 199, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.45),
+            inset 0 -8px 16px rgba(0, 0, 0, 0.35),
+            0 0 0 8px rgba(56, 189, 248, 0.1);
+    }
+}

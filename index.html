@@ -7,6 +7,7 @@
     <meta name="description" content="An original atmospheric idle game where you command an ancient floating astral foundry harnessing celestial aether.">
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/foundry.css">
@@ -18,8 +19,31 @@
         <!-- TOP HEADER -->
         <header class="game-header">
             <div class="brand-section">
-                <h1 class="game-title">ASTRAL FOUNDRY</h1>
-                <span class="game-subtitle">Cosmic Crucible</span>
+                <span class="brand-emblem" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="24" cy="24" r="21" stroke="url(#emblemRing)" stroke-width="1.6" stroke-dasharray="4 3.2"/>
+                        <ellipse cx="24" cy="24" rx="21" ry="8.5" stroke="rgba(217,119,6,.75)" stroke-width="1.1" transform="rotate(-24 24 24)"/>
+                        <ellipse cx="24" cy="24" rx="21" ry="8.5" stroke="rgba(56,189,248,.65)" stroke-width="1.1" transform="rotate(38 24 24)"/>
+                        <path d="M24 9.5 30.6 24 24 38.5 17.4 24Z" fill="url(#emblemCore)" stroke="rgba(186,230,253,.9)" stroke-width="1"/>
+                        <circle cx="24" cy="24" r="3.4" fill="#fff"/>
+                        <circle cx="24" cy="24" r="6.2" fill="url(#emblemHalo)"/>
+                        <defs>
+                            <linearGradient id="emblemRing" x1="6" y1="4" x2="42" y2="44">
+                                <stop stop-color="#7dd3fc"/><stop offset=".55" stop-color="#fbbf24"/><stop offset="1" stop-color="#a855f7"/>
+                            </linearGradient>
+                            <linearGradient id="emblemCore" x1="24" y1="9" x2="24" y2="39">
+                                <stop stop-color="#e0f2fe"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#075985"/>
+                            </linearGradient>
+                            <radialGradient id="emblemHalo">
+                                <stop stop-color="rgba(125,211,252,.85)"/><stop offset="1" stop-color="rgba(56,189,248,0)"/>
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <div class="brand-text">
+                    <h1 class="game-title">ASTRAL FOUNDRY</h1>
+                    <span class="game-subtitle">Cosmic Crucible</span>
+                </div>
             </div>
 
             <div class="header-center-surge">
@@ -29,9 +53,26 @@
             </div>
 
             <div class="header-actions">
-                <button class="btn-icon-header" id="btn-toggle-sound" title="Toggle Sound">🔊</button>
-                <button class="btn-icon-header" id="btn-manual-save" title="Save Progress (Ctrl+S)">💾</button>
-                <button class="btn-icon-header" id="btn-open-settings" title="Settings & Save Management">⚙️</button>
+                <button class="btn-icon-header" id="btn-toggle-sound" title="Toggle Sound" aria-label="Toggle sound">
+                    <svg class="ico ico-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" fill="currentColor" stroke-linejoin="round"/>
+                        <path class="wave wave-1" d="M14.5 9.5a4 4 0 0 1 0 5"/>
+                        <path class="wave wave-2" d="M17.2 7a7.5 7.5 0 0 1 0 10"/>
+                        <path class="mute-slash" d="M15 9.5 20 14.5 M20 9.5 15 14.5"/>
+                    </svg>
+                </button>
+                <button class="btn-icon-header" id="btn-manual-save" title="Save Progress (Ctrl+S)" aria-label="Save progress">
+                    <svg class="ico ico-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 3.75h10.6L20.25 8.4V19a1.25 1.25 0 0 1-1.25 1.25H5A1.25 1.25 0 0 1 3.75 19V5A1.25 1.25 0 0 1 5 3.75Z"/>
+                        <path d="M7.5 3.75v5h8v-5 M7.5 20.25v-6.1h9v6.1"/>
+                    </svg>
+                </button>
+                <button class="btn-icon-header" id="btn-open-settings" title="Settings & Save Management" aria-label="Settings">
+                    <svg class="ico ico-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="3.1"/>
+                        <path d="M12 2.9l1.5 2.2 2.6-.6 .6 2.6 2.5 1.1-1.2 2.4 1.2 2.4-2.5 1.1-.6 2.6-2.6-.6L12 21.1l-1.5-2.2-2.6.6-.6-2.6-2.5-1.1 1.2-2.4-1.2-2.4 2.5-1.1.6-2.6 2.6.6L12 2.9Z"/>
+                    </svg>
+                </button>
             </div>
         </header>
 
@@ -40,33 +81,70 @@
             <!-- LEFT COLUMN: NAVIGATION & INTERACTIVE TABS -->
             <section class="left-panel" aria-label="Foundry Operations">
                 <nav class="nav-tabs-header" role="tablist">
-                    <button class="nav-item active" data-tab="overview" role="tab">Overview</button>
-                    <button class="nav-item" data-tab="production" role="tab">Production</button>
-                    <button class="nav-item" data-tab="buildings" role="tab">Buildings</button>
-                    <button class="nav-item" data-tab="upgrades" role="tab">Upgrades</button>
-                    <button class="nav-item" data-tab="research" role="tab">Research</button>
-                    <button class="nav-item" data-tab="automation" role="tab">Automation</button>
-                    <button class="nav-item" data-tab="archive" role="tab">Archive</button>
-                    <button class="nav-item ascension-tab" data-tab="ascension" role="tab">Ascension</button>
+                    <button class="nav-item active" data-tab="overview" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.6 8 3l6 5.6V14H9.7v-3.4H6.3V14H2V8.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        <span>Overview</span>
+                    </button>
+                    <button class="nav-item" data-tab="production" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5h11M4 11V7.5M7.3 11V4.5M10.6 11V6M13.5 11V3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <span>Production</span>
+                    </button>
+                    <button class="nav-item" data-tab="buildings" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5h11M3.5 13.5V6.2l4.5-3 4.5 3v7.3M6.5 13.5v-3.2h3v3.2M5.4 7.6h1.4M9.2 7.6h1.4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Buildings</span>
+                    </button>
+                    <button class="nav-item" data-tab="upgrades" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.4 9.7 6l3.9.5-2.9 2.7.8 3.8L8 11.2l-3.5 1.8.8-3.8L2.4 6.5 6.3 6 8 2.4Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        <span>Upgrades</span>
+                    </button>
+                    <button class="nav-item" data-tab="research" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M6.2 2.5v3.7L3 12.2c-.5.9.1 2 1.2 2h7.6c1.1 0 1.7-1.1 1.2-2L9.8 6.2V2.5M5.2 2.5h5.6M4.9 9.8h6.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Research</span>
+                    </button>
+                    <button class="nav-item" data-tab="automation" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="5.6" width="8" height="6.4" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 3v2.6M2.6 8.4h1.4M12 8.4h1.4M5.4 14h5.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="6.4" cy="8.6" r=".85" fill="currentColor"/><circle cx="9.6" cy="8.6" r=".85" fill="currentColor"/></svg>
+                        <span>Automation</span>
+                    </button>
+                    <button class="nav-item" data-tab="archive" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3.2h8.2A1.8 1.8 0 0 1 13 5v8.3H4.8A1.8 1.8 0 0 1 3 11.5V3.2Z M5.6 5.8h5 M5.6 8.2h5 M5.6 10.6h3.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Archive</span>
+                    </button>
+                    <button class="nav-item ascension-tab" data-tab="ascension" role="tab">
+                        <svg class="nav-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.2 13.4 8 8 13.8 2.6 8 8 2.2Z M8 5.6 10.6 8 8 10.4 5.4 8 8 5.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                        <span>Ascension</span>
+                    </button>
                 </nav>
 
                 <div class="tab-content-container">
                     <!-- Tab: Overview -->
                     <div class="tab-panel active" id="tab-overview">
-                        <div class="overview-welcome-card" style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; margin-bottom: 14px;">
-                            <h3 style="font-size: 0.95rem; color: #f1f5f9; margin-bottom: 6px;">Foundry Status: Operational</h3>
-                            <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45;">
-                                Suspended within the celestial cloudbank, this ancient crucible channels the raw fabric of the void. Harvest <strong>Aether</strong> to awaken dormant structures, transcribe forgotten codices, and expand the floating foundry.
-                            </p>
+                        <div class="overview-welcome-card">
+                            <div class="overview-card-crest" aria-hidden="true">
+                                <svg viewBox="0 0 40 40" fill="none">
+                                    <path d="M20 4 33 20 20 36 7 20Z" stroke="rgba(125,211,252,.75)" stroke-width="1.4"/>
+                                    <path d="M20 10.5 27.8 20 20 29.5 12.2 20Z" fill="rgba(56,189,248,.14)" stroke="rgba(245,158,71,.8)" stroke-width="1.2"/>
+                                    <circle cx="20" cy="20" r="3" fill="#e0f2fe"/>
+                                </svg>
+                            </div>
+                            <div class="overview-card-body">
+                                <h3 class="overview-card-title">Foundry Status: <span class="status-ok">Operational</span></h3>
+                                <p class="overview-card-text">
+                                    Suspended within the celestial cloudbank, this ancient crucible channels the raw fabric of the void. Harvest <strong>Aether</strong> to awaken dormant structures, transcribe forgotten codices, and expand the floating foundry.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="quick-instructions" style="background: rgba(10, 14, 23, 0.5); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; margin-bottom: 14px;">
-                            <h4 style="font-size: 0.8rem; color: var(--brass-gold); text-transform: uppercase; margin-bottom: 6px;">Foundry Directives</h4>
-                            <ul style="font-size: 0.76rem; color: var(--text-secondary); padding-left: 16px; line-height: 1.6;">
-                                <li><strong>Channel Core:</strong> Click the central crystal or press <kbd style="background: #1e293b; padding: 1px 4px; border-radius: 3px; border: 1px solid #475569;">Space</kbd> to draw raw Aether.</li>
-                                <li><strong>Construct:</strong> Build Condensers & Furnaces to establish automated passive output.</li>
+                        <div class="quick-instructions">
+                            <h4 class="directives-title">
+                                <span class="directives-rule" aria-hidden="true"></span>
+                                Foundry Directives
+                                <span class="directives-rule" aria-hidden="true"></span>
+                            </h4>
+                            <ul class="directives-list">
+                                <li><strong>Channel Core:</strong> Click the central crystal or press <kbd>Space</kbd> to draw raw Aether.</li>
+                                <li><strong>Construct:</strong> Build Condensers &amp; Furnaces to establish automated passive output.</li>
                                 <li><strong>Evolve:</strong> Notice the physical Foundry expand and evolve visually with each tier.</li>
-                                <li><strong>Automate & Research:</strong> Build drones, activate construct matrices, and transcribe ancient theorems.</li>
+                                <li><strong>Automate &amp; Research:</strong> Build drones, activate construct matrices, and transcribe ancient theorems.</li>
                             </ul>
                         </div>
                     </div>
@@ -122,6 +200,12 @@
 
                 <!-- Layered Evolving Visual Model of the Foundry -->
                 <div id="foundry-model-container"></div>
+
+                <!-- Cinematic HUD corners -->
+                <div class="viewport-hud hud-tl" aria-hidden="true"></div>
+                <div class="viewport-hud hud-tr" aria-hidden="true"></div>
+                <div class="viewport-hud hud-bl" aria-hidden="true"></div>
+                <div class="viewport-hud hud-br" aria-hidden="true"></div>
             </section>
 
             <!-- RIGHT COLUMN: RESOURCE & PROGRESSION PANEL -->
@@ -129,16 +213,21 @@
                 <!-- Primary Resource Card: Aether -->
                 <div class="resource-card">
                     <div class="res-header">
-                        <span>Aether Reserve</span>
-                        <span class="icon" title="Primary Celestial Fuel">✦</span>
+                        <span class="res-header-label"><span class="res-header-dot" aria-hidden="true"></span>Aether Reserve</span>
+                        <span class="icon" title="Primary Celestial Fuel">
+                            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 1.2 9.9 6.1 14.8 8 9.9 9.9 8 14.8 6.1 9.9 1.2 8 6.1 6.1Z" fill="currentColor"/></svg>
+                        </span>
                     </div>
                     <div class="res-main-display">
                         <span class="res-value" id="res-aether-amount">0</span>
                         <span class="res-unit">AE</span>
                     </div>
                     <div class="res-rate-row">
-                        <span class="rate-label">Harvest Rate:</span>
+                        <span class="rate-label">Harvest Rate</span>
                         <span class="rate-val" id="res-cps-rate">+0 /s</span>
+                    </div>
+                    <div class="res-sparkline" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                     </div>
                 </div>
 
@@ -161,24 +250,40 @@
                         <span>🌌</span>
                     </div>
                     <div class="shards-val" id="res-shards-amount">0</div>
-                    <div style="font-size: 0.72rem; color: #d8b4fe; margin-top: 4px;">
-                        Permanent Celestial Catalysts
-                    </div>
+                    <div class="shards-sub">Permanent Celestial Catalysts</div>
                 </div>
 
                 <!-- Milestone Progress Card -->
                 <div class="milestone-progress-card">
                     <div class="milestone-progress-header">
                         <span id="milestone-progress-text">Next Milestone</span>
-                        <span>🏆</span>
+                        <span class="milestone-trophy" aria-hidden="true">
+                            <svg viewBox="0 0 16 16" width="14" height="14">
+                                <path d="M4.5 2.6h7v3.2a3.5 3.5 0 0 1-7 0V2.6Z M4.5 3.4H2.9v1.3a2.2 2.2 0 0 0 2.1 2.2 M11.5 3.4h1.6v1.3a2.2 2.2 0 0 1-2.1 2.2 M6.4 9.2h3.2l.5 2.4H5.9l.5-2.4Z M5.2 13.4h5.6" fill="none" stroke="#fbbf24" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" id="milestone-progress-fill"></div>
                     </div>
                 </div>
 
+                <!-- Quick Reference / Filler card -->
+                <div class="quick-ref-card" aria-hidden="true">
+                    <div class="quick-ref-title">Channel Log</div>
+                    <ul class="quick-ref-list">
+                        <li><kbd>Space</kbd><span>Draw Aether</span></li>
+                        <li><kbd>M</kbd><span>Mute / Unmute</span></li>
+                        <li><kbd>Ctrl</kbd>+<kbd>S</kbd><span>Manual Save</span></li>
+                    </ul>
+                    <div class="quick-ref-footer">
+                        <span class="quick-ref-dot"></span>
+                        Foundry link stable
+                    </div>
+                </div>
+
                 <!-- Interactive Manual Channel Button -->
-                <button class="btn-primary" id="channel-action-btn" style="margin-top: auto; padding: 12px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <button class="btn-primary" id="channel-action-btn" style="padding: 12px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
                     <span>✦</span>
                     <span>Channel Aether Core</span>
                     <span>✦</span>

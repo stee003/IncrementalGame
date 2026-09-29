@@ -42,6 +42,7 @@ export class FoundryModel {
 
         this.initDOM();
         this.attachPointerParallax();
+        this.attachAdaptiveScale();
     }
 
     initDOM() {
@@ -224,6 +225,37 @@ export class FoundryModel {
     }
 
     /* ---------------------------------------------------------------- *
+     *  Adaptive scale
+     * ---------------------------------------------------------------- */
+
+    /**
+     * Fit the structure to whatever viewport it is in: the base model is
+     * authored at 440px and is scaled up on roomy screens (up to ~1.35x)
+     * so the foundry always feels like the centrepiece of the scene.
+     */
+    attachAdaptiveScale() {
+        if (!this.container || typeof window === 'undefined') return;
+
+        this.scaleHandler = () => {
+            if (!this.wrap) return;
+            const rect = this.container.getBoundingClientRect
+                ? this.container.getBoundingClientRect()
+                : { width: 0, height: 0 };
+            if (!rect.width || !rect.height) return;
+            const raw = Math.min(rect.width / 700, rect.height / 620);
+            const scale = Math.min(1.35, Math.max(0.7, raw));
+            this.wrap.style.setProperty('--foundry-scale', scale.toFixed(3));
+        };
+
+        this.scaleHandler();
+        window.addEventListener('resize', this.scaleHandler);
+        if (typeof window.ResizeObserver === 'function' && this.container.parentElement) {
+            this.scaleObserver = new window.ResizeObserver(() => this.scaleHandler());
+            this.scaleObserver.observe(this.container.parentElement);
+        }
+    }
+
+    /* ---------------------------------------------------------------- *
      *  Pointer parallax
      * ---------------------------------------------------------------- */
 
@@ -348,6 +380,12 @@ export class FoundryModel {
         if (this.container && this.pointerHandler) {
             this.container.removeEventListener('pointermove', this.pointerHandler);
             this.container.removeEventListener('pointerleave', this.leaveHandler);
+        }
+        if (this.scaleHandler && typeof window !== 'undefined') {
+            window.removeEventListener('resize', this.scaleHandler);
+        }
+        if (this.scaleObserver && typeof this.scaleObserver.disconnect === 'function') {
+            this.scaleObserver.disconnect();
         }
     }
 }
