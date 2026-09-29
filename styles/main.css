@@ -104,6 +104,46 @@ html, body {
     background: rgba(56, 189, 248, 0.4);
 }
 
+/* Numbers tick every frame: keep glyph widths stable so nothing jitters */
+.res-value,
+.res-rate-row .rate-val,
+.stat-pill .pill-val,
+.cost-value,
+.building-count-badge,
+.building-rate-badge,
+.upgrade-footer .cost,
+.node-cost,
+.shards-val,
+#res-aether-amount {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+}
+
+/* Subtle top-light on every panel so surfaces read as physical slabs */
+.building-card,
+.upgrade-card,
+.research-branch,
+.automation-card,
+.research-node-card,
+.resource-card,
+.milestone-progress-card {
+    position: relative;
+}
+
+.building-card::before,
+.upgrade-card::before,
+.research-branch::before,
+.automation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.22), transparent);
+    pointer-events: none;
+}
+
 /* Headings */
 h1, h2, h3, h4, .cinzel {
     font-family: var(--font-heading);

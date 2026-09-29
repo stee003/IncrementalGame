@@ -100,6 +100,32 @@ js/
 tests/                  Suite di test (logica + DOM con jsdom)
 ```
 
+## 🎨 Grafica e rendering
+
+La scena è composta da due strati che cooperano.
+
+**`js/visuals/foundry-canvas.js` — lo sfondo cosmico (canvas 2D)**
+
+- **Cielo a 3 profondità**: circa 300 stelle su tre livelli, ognuno con velocità, dimensione e parallasse proprie; le stelle più luminose hanno un riflesso a croce.
+- **Nebulose additive**: 7 nubi che derivano, respirano e seguono il puntatore, con tinta dorata durante le **Surge**.
+- **Correnti di Aether**: filamenti di energia che salgono dal basso con flusso animato.
+- **Mote convergenti**: pulviscolo di Aether che fluttua e viene risucchiato dal nucleo centrale quando si avvicina.
+- **Sparks e onde d'urto**: esplosioni luminose al click, con scia di motion-blur e anelli che si espandono; il nucleo emette spontaneamente scintille quando la produzione è alta.
+- **Stelle cadenti** occasionali, e un bagliore centrale che pulsa più forte all'aumentare della produzione.
+
+**`js/visuals/foundry-model.js` + `styles/foundry.css` — la struttura**
+
+Dieci livelli sovrapposti (isola, dais, anelli astrolabio, ginnasio cronale, forcella da officina, alone, ecc.) che si attivano con i progressi. Ogni strato ha una profondità di parallasse propria e l'intera struttura inclina in 3D seguendo il puntatore.
+
+**Dettagli di implementatione**
+
+- Tutti i movimenti sono **delta-time based**: la velocità non dipende dal frame rate.
+- Il **glow** usa sprite pre-renderizzati e composizione `lighter` invece di `shadowBlur` (molto più costoso).
+- **Qualità adattiva**: se i frame rallentano in modo sostenuto, gli effetti più costosi (correnti, stelle cadenti, riflessi) vengono spenti e ripristinati quando c'è margine. Le soglie derivano dal miglior frame osservato, quindi funzionano sia a 60Hz che ad alti refresh.
+- **Responsivo**: il canvas si riadatta con `ResizeObserver` e le entità vengono riposizionate dentro i nuovi bordi.
+- **Accessibilità**: `prefers-reduced-motion` disattiva le animazioni; l'opzione *Particles* in Impostazioni disattiva moti, sparks e correnti mantenendo lo sfondo.
+- Il renderer ha un **percorso lite** per contesti 2D limitati (è quello che usa il mock di canvas dei test con jsdom).
+
 ## 🔧 Requisiti
 
 - Un browser moderno (Chrome, Firefox, Edge, Safari).

@@ -934,3 +934,300 @@ input:checked + .slider:before { transform: translateX(16px); }
 .reset-column.lost h4 { color: #f87171; }
 .reset-column.kept h4 { color: #c084fc; }
 .reset-column ul { padding-left: 16px; line-height: 1.5; color: var(--text-secondary); }
+
+/* ======================================================
+   SURFACE POLISH
+   Cards, chips and the channel button share one lighting model:
+   a cool top-light, a warm bottom bounce, and a lift on hover.
+   ====================================================== */
+
+.building-card,
+.upgrade-card,
+.research-node-card,
+.automation-card {
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.building-card:hover,
+.upgrade-card:hover:not(.purchased),
+.research-node-card:hover:not(.locked) {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(56, 189, 248, 0.08),
+        0 0 20px rgba(56, 189, 248, 0.12);
+    background: linear-gradient(180deg, rgba(23, 33, 51, 0.85) 0%, rgba(13, 19, 31, 0.9) 100%);
+}
+
+.building-card.owned {
+    background: linear-gradient(180deg, rgba(21, 32, 50, 0.8) 0%, rgba(12, 18, 29, 0.9) 100%);
+}
+
+/* Purchasable upgrades breathe gently to draw the eye */
+.upgrade-card.affordable:not(.purchased) {
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.1), 0 0 16px rgba(56, 189, 248, 0.12);
+    animation: affordPulse 2.6s ease-in-out infinite;
+}
+
+.upgrade-card.purchased {
+    background: linear-gradient(180deg, rgba(20, 63, 40, 0.22) 0%, rgba(10, 20, 16, 0.6) 100%);
+}
+
+.research-node-card.available {
+    background: linear-gradient(180deg, rgba(58, 34, 8, 0.4) 0%, rgba(14, 18, 28, 0.8) 100%);
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.1);
+}
+
+.research-node-card.researched {
+    background: linear-gradient(180deg, rgba(8, 47, 73, 0.45) 0%, rgba(10, 16, 27, 0.8) 100%);
+}
+
+/* Icons sit in a recessed socket rather than a flat square */
+.building-icon-wrap,
+.upgrade-icon,
+.node-icon-box {
+    background:
+        radial-gradient(circle at 50% 25%, rgba(56, 189, 248, 0.12) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(8, 12, 20, 0.9), rgba(4, 7, 13, 0.95));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), inset 0 -6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.building-icon-wrap { border-radius: 6px; }
+
+/* ======================================================
+   PRIMARY CHANNEL BUTTON
+   ====================================================== */
+#channel-action-btn {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0ea5e9 0%, #0369a1 55%, #075985 100%) !important;
+    border: 1px solid rgba(125, 211, 252, 0.55) !important;
+    box-shadow:
+        0 6px 20px rgba(2, 132, 199, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -8px 16px rgba(0, 0, 0, 0.35);
+    letter-spacing: 0.08em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    transition: transform 0.12s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+#channel-action-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: rotate(14deg);
+    animation: cardSheen 4.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+#channel-action-btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow:
+        0 10px 26px rgba(14, 165, 233, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        0 0 26px rgba(56, 189, 248, 0.3);
+}
+
+#channel-action-btn:active { transform: translateY(1px) scale(0.985); }
+
+/* ======================================================
+   BOTTOM BAR CHIPS
+   ====================================================== */
+.quick-building-chip {
+    background: linear-gradient(180deg, rgba(23, 32, 50, 0.8) 0%, rgba(11, 16, 26, 0.9) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.quick-building-chip.affordable {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 0 12px rgba(56, 189, 248, 0.14);
+}
+.quick-building-chip:hover:not(.unaffordable) {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 14px rgba(56, 189, 248, 0.28);
+}
+
+.quick-upgrade-chip {
+    background: linear-gradient(135deg, rgba(58, 34, 8, 0.55) 0%, rgba(15, 20, 32, 0.9) 100%);
+    transition: all 0.18s ease;
+}
+.quick-upgrade-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 16px var(--gold-glow);
+}
+
+.buy-amount-btn.active {
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.28) 0%, rgba(2, 132, 199, 0.25) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+/* ======================================================
+   FLOATING NUMBERS & TOASTS
+   ====================================================== */
+.floating-number {
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+    will-change: transform, opacity;
+}
+.float-aether {
+    color: #bae6fd;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.95), 0 0 32px rgba(56, 189, 248, 0.45), 0 2px 5px rgba(0, 0, 0, 0.95);
+}
+
+.foundry-toast {
+    background: linear-gradient(135deg, rgba(17, 26, 43, 0.94) 0%, rgba(9, 13, 22, 0.94) 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 22px rgba(56, 189, 248, 0.14);
+}
+
+/* ======================================================
+   MODALS
+   ====================================================== */
+.modal-content {
+    background: linear-gradient(180deg, rgba(17, 25, 41, 0.97) 0%, rgba(9, 13, 22, 0.98) 100%);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(56, 189, 248, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.modal-header {
+    background: linear-gradient(180deg, rgba(20, 30, 48, 0.8), rgba(10, 14, 23, 0.8));
+}
+
+/* ======================================================
+   MISSING LAYOUTS
+   Structural classes emitted by the renderer that previously
+   had no rules, so those regions rendered as flat text.
+   ====================================================== */
+
+/* Production: headline row + multiplier labels */
+.prod-headline {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+.headline-rate {
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 18px rgba(56, 189, 248, 0.5);
+}
+.mult-label {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.mult-item { transition: border-color 0.18s ease, background 0.18s ease; }
+.mult-item:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    background: rgba(23, 33, 51, 0.7);
+}
+.rate-row { transition: background 0.18s ease, border-color 0.18s ease; }
+.rate-row:hover {
+    background: rgba(23, 33, 51, 0.65);
+    border-color: rgba(56, 189, 248, 0.25);
+}
+.name-col .icon { font-size: 0.95rem; width: 18px; text-align: center; }
+.percent-bar-bg { border: 1px solid rgba(255, 255, 255, 0.05); }
+.percent-bar-fill {
+    background: linear-gradient(90deg, #075985, #38bdf8 70%, #bae6fd);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+/* Archive */
+.milestone-info { flex: 1; min-width: 0; }
+.milestone-card { transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+.milestone-card:hover {
+    transform: translateX(2px);
+    border-color: rgba(245, 158, 11, 0.35);
+}
+.milestone-card.pending { opacity: 0.72; }
+.milestone-card.completed {
+    background: linear-gradient(135deg, rgba(120, 53, 15, 0.22) 0%, rgba(15, 23, 42, 0.8) 100%);
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.08);
+}
+.milestone-card.completed .milestone-icon { filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.7)); }
+.milestone-card.completed .milestone-status { color: #4ade80; }
+
+.lore-entry {
+    transition: background 0.2s ease, border-color 0.2s ease;
+    background: linear-gradient(90deg, rgba(120, 53, 15, 0.12) 0%, rgba(15, 23, 42, 0.4) 100%);
+}
+.lore-entry:hover {
+    background: linear-gradient(90deg, rgba(120, 53, 15, 0.22) 0%, rgba(23, 33, 51, 0.7) 100%);
+    border-left-color: #fbbf24;
+}
+
+.empty-state {
+    padding: 20px 18px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.6;
+    background: rgba(10, 14, 23, 0.4);
+    border: 1px dashed rgba(148, 163, 184, 0.18);
+    border-radius: var(--radius-md);
+}
+
+/* Research */
+.branch-meta { flex: 1; min-width: 0; }
+.research-node-card { transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease; }
+.research-node-card:hover:not(.locked) { transform: translateX(2px); }
+.node-content { min-width: 0; }
+.node-title, .node-desc { overflow-wrap: anywhere; }
+
+/* Automation */
+.governor-active-badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #c084fc;
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 0 14px rgba(168, 85, 247, 0.22);
+    animation: auraBreath 2.6s ease-in-out infinite;
+}
+.automation-card.unlocked {
+    background: linear-gradient(180deg, rgba(23, 33, 51, 0.8) 0%, rgba(12, 18, 29, 0.9) 100%);
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+/* Ascension */
+.ascension-ritual-card {
+    background:
+        radial-gradient(ellipse 90% 70% at 50% 0%, rgba(168, 85, 247, 0.16) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(30, 20, 55, 0.8) 0%, rgba(12, 16, 28, 0.92) 100%);
+    border-color: rgba(168, 85, 247, 0.35);
+    box-shadow: 0 0 40px rgba(126, 34, 206, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.ritual-header { text-align: center; }
+.ritual-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+.ritual-actions .btn-ascend {
+    font-family: var(--font-heading);
+    letter-spacing: 0.06em;
+    animation: ritualGlow 2.8s ease-in-out infinite;
+}
+.perk-card { transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.perk-card.affordable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+@keyframes ritualGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+    50%      { box-shadow: 0 6px 30px rgba(168, 85, 247, 0.6),  inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+}

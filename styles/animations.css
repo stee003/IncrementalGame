@@ -176,3 +176,104 @@
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ======================================================
+   FOUNDRY STRUCTURE MOTION
+   ====================================================== */
+
+@keyframes mistDrift {
+    0%   { transform: translateX(-18px) scaleX(0.92); opacity: 0.55; }
+    50%  { transform: translateX(10px)  scaleX(1.06); opacity: 0.9; }
+    100% { transform: translateX(26px)  scaleX(0.96); opacity: 0.6; }
+}
+
+@keyframes debrisBob {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 3px -12px; }
+}
+
+@keyframes shaftFlicker {
+    0%, 100% { transform: scaleY(1) scaleX(1);   opacity: 0.30; }
+    45%      { transform: scaleY(1.06) scaleX(1.1); opacity: 0.55; }
+    70%      { transform: scaleY(0.97) scaleX(0.95); opacity: 0.40; }
+}
+
+@keyframes veinPulse {
+    0%, 100% { filter: brightness(0.7); }
+    50%      { filter: brightness(1.45); }
+}
+
+@keyframes conduitFlow {
+    0%, 100% { filter: brightness(0.75); }
+    50%      { filter: brightness(1.5); }
+}
+
+@keyframes beamFlicker {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 0.95; }
+}
+
+@keyframes specularSweep {
+    0%, 15%   { transform: translateX(-70%) rotate(0deg);   opacity: 0; }
+    40%       { opacity: 0.9; }
+    55%, 100% { transform: translateX(70%)  rotate(0deg);  opacity: 0; }
+}
+
+@keyframes promptFloat {
+    0%, 100% { transform: translateY(0);   opacity: 0.72; }
+    50%      { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ======================================================
+   UI MICRO-ANIMATIONS
+   ====================================================== */
+
+@keyframes cardSheen {
+    0%, 62%  { transform: translateX(0)     rotate(12deg); }
+    100%     { transform: translateX(520%)  rotate(12deg); }
+}
+
+@keyframes progressShimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes borderDrift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@keyframes affordPulse {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.1), 0 0 14px rgba(56, 189, 248, 0.1); }
+    50%      { box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.18), 0 0 22px rgba(56, 189, 248, 0.22); }
+}
+
+/* ======================================================
+   ACCESSIBILITY: honour the OS reduced-motion preference
+   ====================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .foundry-layer,
+    .astrolabe-ring,
+    .shard-layer,
+    .aureole-ring,
+    .chronal-gyroscope-outer,
+    .forge-layer,
+    .rune-circle,
+    .core-halo,
+    .core-aura,
+    .core-crystal,
+    .crystal-specular,
+    .void-mist,
+    .debris-shard,
+    .light-shaft,
+    .crag-vein,
+    .core-label-prompt {
+        animation: none !important;
+    }
+
+    .foundry-structure-wrap {
+        transition: none;
+        transform: translateY(var(--lift)) scale(var(--foundry-scale));
+    }
+}
+
